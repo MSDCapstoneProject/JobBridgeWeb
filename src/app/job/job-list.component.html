@@ -1,0 +1,34 @@
+<md-card class="card">
+    <md-card-content layout-padding>
+        <div id="layout">
+            <div id="master">
+                <md-toolbar color="primary">
+                    <span *ngIf="!showSearch" (click)="toggleSearch()">Jobs</span>
+                    <md-icon *ngIf="!showSearch" (click)="toggleSearch()" class="toolbar-icon">search</md-icon>
+                    <md-input-container *ngIf="showSearch">
+                        <input [(ngModel)]="search.title" mdInput placeholder="Type job's title'">
+                    </md-input-container>
+                    <md-icon *ngIf="showSearch" (click)="toggleSearch()" class="toolbar-icon">backspace</md-icon>
+                </md-toolbar>
+                <md-list class="list">
+                    <md-list-item *ngFor="let job of jobService.jobs | async | jobNameFilter:search.title"
+                    [class.selected]="job === selectedJob"
+                    (click)="onSelect(job)"
+                    class="listItem">
+                        <md-icon md-list-icon>account_box</md-icon>
+                        <h4 md-line>{{job.title}}</h4>
+                        <p md-line> {{job.jobLocation}} </p>
+                    </md-list-item>
+                </md-list>
+            </div>
+            
+            <div id="detail">
+                <job-detail [inputJob]="selectedJob"></job-detail>
+            </div>  
+        </div>
+    </md-card-content>
+</md-card>
+
+<div class="buttons">
+    <button [routerLink]="['new']" md-fab color="primary"><md-icon>add</md-icon></button>
+</div>

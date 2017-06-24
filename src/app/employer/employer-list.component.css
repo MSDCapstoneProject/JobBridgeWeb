@@ -1,0 +1,16 @@
+#layout {
+  display: -webkit-flex;     /* Safari */
+  display: flex;
+}
+
+#master {
+    width: 25%;
+}
+
+#detail {
+    width: 75%;
+}
+
+.mat-list-icon {
+  color: rgba(0, 0, 0, 0.54);
+}

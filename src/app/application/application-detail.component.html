@@ -1,0 +1,27 @@
+<div *ngIf="application async">
+    <md-toolbar>
+        <span class="toolbar-spacer">ID - {{application.id}}</span>
+        <md-icon class="toolbar-icon">verified_user</md-icon>
+    </md-toolbar>
+    <div class="content">
+        <div class="inline-title">Name</div>
+        <h3>{{application.JobSeeker.lastName}}&nbsp;{{application.JobSeeker.firstName}}</h3><br>
+        <div class="inline-title">Applied Date</div>
+        <h3>{{application.appliedOn}}</h3><br>
+        <div class="inline-title">Status</div>
+        <h3>{{application.applicationStatus}}</h3><br>
+        <h1>Applicant Information</h1>
+        <div class="inline-title">Id: </div>{{application.JobSeeker.id}}<br>
+        <div class="inline-title">Address: </div>{{application.JobSeeker.address}}<br>
+        <div class="inline-title">Email: </div>{{application.JobSeeker.email}}<br>
+        <div class="inline-title">Phone: </div>{{application.JobSeeker.phone}}<br>
+        <div class="inline-title">SIN: </div>{{application.JobSeeker.sin}}<br>
+        <div class="inline-title">DOB: </div>{{application.JobSeeker.DOB}}<br>
+        <div class="inline-title">Status: </div>{{application.JobSeeker.status}}<br>
+        <div class="inline-title">Gender: </div>{{application.JobSeeker.gender}}<br>
+    </div>
+    <div class="buttons">
+        <button (click)="accept()" md-raised-button color="primary">Accept</button>
+        <button (click)="deny()" md-raised-button color="primary">Deny</button>
+    </div>
+</div>

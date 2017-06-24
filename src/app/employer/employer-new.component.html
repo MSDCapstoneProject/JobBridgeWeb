@@ -1,0 +1,29 @@
+<h3 highlight>New Employer</h3>
+<md-card class="card">
+    <md-card-content>
+        <md-input-container class="input-full-width">
+            <input [(ngModel)]="employer.name" mdInput placeholder="Name of employer" required maxlength=200>
+            <md-hint align="end">{{employer.name.length}} / 200</md-hint>
+        </md-input-container>
+        <md-input-container class="input-full-width">
+            <input [(ngModel)]="employer.address" mdInput placeholder="Address" required maxlength=200>
+            <md-hint align="end">{{employer.address.length}} / 200</md-hint>
+        </md-input-container>
+        <md-input-container class="input-full-width">
+            <input [(ngModel)]="employer.email" mdInput placeholder="Email" email required maxlength=200>
+            <md-hint align="end">{{employer.email.length}} / 200</md-hint>
+        </md-input-container>
+        <md-input-container class="input-full-width">
+            <input [(ngModel)]="employer.phone" mdInput placeholder="Phone number" required maxlength=20>
+            <md-hint align="end">{{employer.phone.length}} / 20</md-hint>
+        </md-input-container>
+        <md-input-container class="input-full-width">
+            <input [(ngModel)]="employer.website" mdInput placeholder="Website address" required maxlength=200>
+            <md-hint align="end">{{employer.website.length}} / 200</md-hint>
+        </md-input-container>
+    </md-card-content>
+    <md-card-actions class="buttons">
+        <button (click)="post()" md-raised-button color="primary">Save</button>
+        <button routerLink="../" md-button>List</button>
+    </md-card-actions>
+</md-card>

@@ -1,7 +1,15 @@
 import { Component } from '@angular/core';
+import { NavComponent} from './nav.component';
+
+import { ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'my-app',
-  template: `<h1>Hello {{name}}</h1>`,
+  selector: 'app-root',
+  template: `
+    <nav></nav>
+    <div class="content">
+    <router-outlet></router-outlet></div>
+  `,
+  encapsulation: ViewEncapsulation.None,
 })
-export class AppComponent  { name = 'Angular'; }
+export class AppComponent  { }

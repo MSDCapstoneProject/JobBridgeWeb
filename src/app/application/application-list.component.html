@@ -1,0 +1,30 @@
+<md-card class="card">
+    <md-card-content layout-padding>
+        <div id="layout">
+            <div id="master">
+                <md-toolbar color="primary">
+                    <span *ngIf="!showSearch" (click)="toggleSearch()">Applications</span>
+                    <md-icon *ngIf="!showSearch" (click)="toggleSearch()" class="toolbar-icon">search</md-icon>
+                    <md-input-container *ngIf="showSearch">
+                        <input [(ngModel)]="search.title" mdInput placeholder="Type application's name'">
+                    </md-input-container>
+                    <md-icon *ngIf="showSearch" (click)="toggleSearch()" class="toolbar-icon">backspace</md-icon>
+                </md-toolbar>
+                <md-list class="list">
+                    <md-list-item *ngFor="let application of applicationService.applications | async | applicationNameFilter:search.title"
+                    [class.selected]="application === selectedApplication"
+                    (click)="onSelect(application)"
+                    class="listItem">
+                        <md-icon md-list-icon>account_box</md-icon>
+                        <h4 md-line>{{application.JobSeeker.firstName}}&nbsp;{{application.JobSeeker.lastName}}</h4>
+                        <p md-line> {{application.appliedOn}} </p>
+                    </md-list-item>
+                </md-list>
+            </div>
+            
+            <div id="detail">
+                <application-detail [inputApplication]="selectedApplication"></application-detail>
+            </div>  
+        </div>
+    </md-card-content>
+</md-card>

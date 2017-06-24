@@ -1,0 +1,51 @@
+<md-card class="card">
+    <md-card-content layout-padding>
+        <md-list>
+            <h3 md-subheader>Filters</h3>
+            <md-list-item>
+                <md-input-container>
+                    <input [(ngModel)]="search.title" mdInput placeholder="Type title">
+                </md-input-container>
+            </md-list-item>
+            <md-list-item>
+                <md-input-container>
+                    <input [(ngModel)]="search.location" mdInput placeholder="Type location">
+                </md-input-container>
+            </md-list-item>
+            <md-list-item>
+                <div class="input-full-width input-single-row">
+                    <div class="inline-title">Status</div>
+                    <md-radio-group class="input-full-width" [(ngModel)]="search.status">
+                        <md-radio-button class="radio-button" *ngFor="let status of statuses" [value]="status.key">
+                            {{status.value}}
+                        </md-radio-button>
+                    </md-radio-group>
+                </div>
+            </md-list-item>
+            <md-divider></md-divider>
+            <h3 md-subheader>Jobs</h3>
+            <md-grid-list cols="2" rowHeight="500px">
+                <md-grid-tile *ngFor="let job of applicationService.jobs | async | jobListFilter:search">
+                    <md-card class="md-card-item">
+                        <md-card-header>
+                            <md-card-title>{{job.title}}</md-card-title>
+                            <md-card-subtitle>{{job.jobLocation}}</md-card-subtitle>
+                        </md-card-header>
+                        <img md-card-image src="app/images/location.png">
+                        <md-card-content>
+                            <p>{{job.jobType}}</p>
+                            <p>{{job.jobCategory}}</p>
+                            <p>
+                                Viewed : 50,
+                                Applied : 300
+                            </p>
+                        </md-card-content>
+                        <md-card-actions>
+                            <button md-button (click)="onSelect(job)">View Detail</button>
+                        </md-card-actions>
+                    </md-card>
+                </md-grid-tile>
+            </md-grid-list>
+        </md-list>
+    </md-card-content>
+</md-card>

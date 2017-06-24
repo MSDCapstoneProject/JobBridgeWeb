@@ -1,0 +1,127 @@
+<h3 highlight>New Job</h3>
+<md-card class="card">
+    <md-card-content>
+        <md-input-container class="input-full-width">
+            <input [(ngModel)]="job.title" mdInput placeholder="Title" required maxlength=200>
+            <md-hint align="end">{{job.title.length}} / 200</md-hint>
+        </md-input-container>
+        <md-input-container class="input-full-width">
+            <input [(ngModel)]="job.jobLocation" mdInput placeholder="Location" required maxlength=200>
+            <md-hint align="end">{{job.jobLocation.length}} / 200</md-hint>
+        </md-input-container>
+        <div class="input-full-width input-single-row">
+            <md-select placeholder="Category" [(ngModel)]="job.JobCategoryId" required class="input-half-width">
+                <md-option *ngFor="let jobCategory of jobService.jobCategories | async" [value]="jobCategory.id">
+                {{jobCategory.description}} [{{jobCategory.internalCode}}]
+                </md-option>
+            </md-select>
+
+            <md-select placeholder="Type" [(ngModel)]="job.JobTypeId" required class="input-half-width">
+                <md-option *ngFor="let jobType of jobService.jobTypes | async" [value]="jobType.id">
+                {{jobType.description}} [{{jobType.internalCode}}]
+                </md-option>
+            </md-select>
+        </div>
+        <div class="input-full-width input-single-row">
+            <div class="inline-title">Start Date</div>
+            <md-input-container class="input-datepicker">
+                <input [(ngModel)]="job.startDate" mdInput [mdDatepicker]="picker1" required placeholder="Choose a date">
+                <button mdSuffix [mdDatepickerToggle]="picker1"></button>
+            </md-input-container>
+            <md-datepicker #picker1 required class="date-picker"></md-datepicker>
+            <div class="inline-title">Time(HH:MM)</div>
+            <md-select placeholder="Hour" [(ngModel)]="startTime.hour" floatPlaceholder="never">
+                <md-option *ngFor="let key of '24' | demoNumber" [value]="key">{{ key }}</md-option>
+            </md-select>
+            <md-select placeholder="Minute" [(ngModel)]="startTime.minute" floatPlaceholder="never">
+                <md-option *ngFor="let key of '60' | demoNumber" [value]="key">{{ key }}</md-option>
+            </md-select>
+        </div>
+        <div class="input-full-width input-single-row">
+            <div class="inline-title">End Date</div>
+            <md-input-container class="input-datepicker">
+                <input [(ngModel)]="job.endDate" mdInput [mdDatepicker]="picker2" required placeholder="Choose a date">
+                <button mdSuffix [mdDatepickerToggle]="picker2"></button>
+            </md-input-container>
+            <md-datepicker #picker2 required class="date-picker"></md-datepicker>
+            <div class="inline-title">Time(HH:MM)</div>
+            <md-select placeholder="Hour" [(ngModel)]="endTime.hour" floatPlaceholder="never">
+                <md-option *ngFor="let key of '24' | demoNumber" [value]="key">{{ key }}</md-option>
+            </md-select>
+            <md-select placeholder="Minute" [(ngModel)]="endTime.minute" floatPlaceholder="never">
+                <md-option *ngFor="let key of '60' | demoNumber" [value]="key">{{ key }}</md-option>
+            </md-select>
+        </div>
+        <md-input-container class="input-full-width">
+            <input [(ngModel)]="job.wage" mdInput placeholder="Wage" required>
+        </md-input-container>
+        <div class="input-full-width quill-container">
+            <p>Description</p>
+            <quill-editor #editor [(ngModel)]="job.description" [modules]="{ counter: { container: '#counter', unit: 'char' } }" class="quill-editor">
+                <div quill-editor-toolbar>
+                    <span class="ql-formats">
+                        <select class="ql-size" [title]="'Size'">
+                            <option value="small"></option>
+                            <option value="false" selected></option>
+                            <option value="large"></option>
+                            <option value="huge"></option>
+                        </select>
+                    </span>
+                    <span class="ql-formats">
+                        <button class="ql-bold" [title]="'Bold'"></button>
+                        <button class="ql-italic" [title]="'Italic'"></button>
+                        <button class="ql-underline" [title]="'Underline'"></button>
+                        <button class="ql-strike" [title]="'Strike'"></button>
+                    </span>
+                    <span class="ql-formats">
+                        <button class="ql-header" [title]="'Header'" value="1"></button>
+                        <button class="ql-header" [title]="'Header'" value="2"></button>
+                        <button class="ql-list" [title]="'List'" value="ordered"></button>
+                        <button class="ql-list" [title]="'List'" value="bullet"></button>
+                        <button class="ql-indent" [title]="'Indent'" value="-1"></button>
+                        <button class="ql-indent" [title]="'Indent'" value="+1"></button>
+                    </span>
+                    <span class="ql-formats">
+                        <select class="ql-color" [title]="'Color'"></select>
+                        <select class="ql-font" [title]="'Font'"></select>
+                        <select class="ql-align" [title]="'Aligment'">
+                            <option selected></option>
+                            <option value="center"></option>
+                            <option value="right"></option>
+                            <option value="justify"></option>
+                        </select>
+                    </span>
+                    <span class="ql-formats">
+                        <div id="counter"></div>
+                    </span>
+                </div>
+            </quill-editor>
+        </div>
+        <div class="input-full-width input-single-row">
+            <div class="inline-title">Post Date</div>
+            <md-input-container class="input-datepicker">
+                <input [(ngModel)]="job.postDate" mdInput [mdDatepicker]="picker3" required placeholder="Choose a date">
+                <button mdSuffix [mdDatepickerToggle]="picker3"></button>
+            </md-input-container>
+            <md-datepicker #picker3 required class="date-picker"></md-datepicker>
+            <div class="inline-title">Expiry Date</div>
+            <md-input-container class="input-datepicker">
+                <input [(ngModel)]="job.expiryDate" mdInput [mdDatepicker]="picker4" required placeholder="Choose a date">
+                <button mdSuffix [mdDatepickerToggle]="picker4"></button>
+            </md-input-container>
+            <md-datepicker #picker4 required class="date-picker"></md-datepicker>
+        </div>
+        <div class="input-full-width input-single-row">
+            <div class="inline-title">Status</div>
+            <md-radio-group class="input-full-width" [(ngModel)]="status">
+                <md-radio-button class="radio-button" *ngFor="let status of statuses" [value]="status">
+                    {{status.value}}
+                </md-radio-button>
+            </md-radio-group>
+        </div>
+    </md-card-content>
+    <md-card-actions class="buttons">
+        <button (click)="post()" md-raised-button color="primary">Save</button>
+        <button routerLink="../" md-button>List</button>
+    </md-card-actions>
+</md-card>
