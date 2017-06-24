@@ -69,7 +69,7 @@ export class ApplicationService {
     }
 
     getApplications(id: number) {
-        this.http.get(this.BASE_URL + '/jobApplications?id=' + id).subscribe(response => {
+        this.http.get(this.BASE_URL + '/jobApplications?jobId=' + id).subscribe(response => {
             this.applicationsStore = <ApplicationList[]> response.json();
             this.applicationsSubject.next(this.applicationsStore);
         }, error => {
@@ -78,7 +78,7 @@ export class ApplicationService {
     }
 
     getApplication(id: number | string) {
-        this.http.get(this.BASE_URL + '/jobApplications?id=' + id).subscribe(response => {
+        this.http.get(this.BASE_URL + '/jobApplications?jobApplicationId=' + id).subscribe(response => {
             this.applicationStore = <ApplicationList> response.json();
             this.applicationSubject.next(this.applicationStore);
         }, error => {
@@ -86,15 +86,15 @@ export class ApplicationService {
         });
     }
 
-    async update(Application: Application) {
+    async update(application: Application) {
         try {
-            let body = JSON.stringify(Application);
+            let body = JSON.stringify(application);
             let headers = new Headers({ 'Content-Type': 'application/json' });
             let options = new RequestOptions({ headers: headers });
 
             var response = await this.http.post(this.BASE_URL + '/jobApplications/update', body, options).toPromise();
             // response is not a object
-            //this.getApplications();
+            this.getApplications(application.jobId);
             //this.ApplicationsStore.push(response.json());
             //this.ApplicationsSubject.next(this.ApplicationsStore);
         } catch (error) {

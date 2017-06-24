@@ -16,12 +16,12 @@ export class JobListComponent implements OnInit {
     search: JobSearchArgs = {
         title: '',
         location: '',
-        status: 1
+        status: 0
     }
 
     statuses: KeyValuePair[] = [
       { key: 0, value: 'Open' },
-      { key: 1, value: 'Close' }
+      { key: 1, value: 'Closed' }
     ];
 
     async ngOnInit() {
@@ -29,8 +29,7 @@ export class JobListComponent implements OnInit {
     }
 
     onSelect(job: Job): void {
-        this.router.navigate(['application', job.id],  {relativeTo: this.route},
-        );
+        this.router.navigate(['application', job.id],  {relativeTo: this.route} );
     }
     
 }

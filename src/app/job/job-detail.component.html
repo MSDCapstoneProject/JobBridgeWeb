@@ -114,6 +114,9 @@
             </md-input-container>
             <md-datepicker #picker4 required class="date-picker"></md-datepicker>
         </div>
+        <md-input-container class="input-full-width">
+            <input [(ngModel)]="job.totalPositions" mdInput type="number" placeholder="Total positions" required>
+        </md-input-container>
         <div class="input-full-width input-single-row">
             <div class="inline-title">Status</div>
             <md-radio-group class="input-full-width" [(ngModel)]="status">

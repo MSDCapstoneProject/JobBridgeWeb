@@ -25,7 +25,7 @@ export class ApplicationListComponent implements OnInit {
     async ngOnInit() {
         this.sub = this.route.params.subscribe(params => {
             this.id = +params['id'];
-            this.applicationService.getApplications(1);
+            this.applicationService.getApplications(this.id);
         });
     }
 

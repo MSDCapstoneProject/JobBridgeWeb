@@ -44,10 +44,12 @@ export class ApplicationDetailComponent implements OnChanges {
   }
 
   accept() {
+    this.application.applicationStatus = 'accepted';
     this.applicationService.update(this.application);
   }
 
   deny() {
-    
+    this.application.applicationStatus = 'denied';
+    this.applicationService.update(this.application);
   }
 }

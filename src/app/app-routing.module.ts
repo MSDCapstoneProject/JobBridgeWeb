@@ -14,7 +14,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'jobSeekers',
-    loadChildren: 'app/jobSeeker/jobSeeker.module#JobModule'
+    loadChildren: 'app/jobSeeker/jobSeeker.module#JobSeekerModule'
   },
   {
     path: 'jobs',

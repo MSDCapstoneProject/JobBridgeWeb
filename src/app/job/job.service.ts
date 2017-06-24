@@ -22,7 +22,8 @@ export class Job {
         public status:boolean,
         public EmployerId:number,
         public JobTypeId:number,
-        public JobCategoryId:number ) {
+        public JobCategoryId:number,
+        public totalPositions:number ) {
     }
 }
 
@@ -45,7 +46,8 @@ export class JobList {
         public JobCategoryId:number,
         public Employer:Employer,
         public JobType:string,
-        public JobCategory:string ) {
+        public JobCategory:string,
+        public totalPositions:number ) {
     }
 }
 
