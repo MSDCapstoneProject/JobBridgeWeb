@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule, MdNativeDateModule } from '@angular/material'
 import { SharedModule } from '../shared/shared.module';
@@ -17,6 +17,6 @@ import { QuillModule } from 'ngx-quill';
 @NgModule({
   imports:      [ CommonModule, FormsModule, ReactiveFormsModule, HttpModule, MaterialModule, MdNativeDateModule, SharedModule, JobRoutingModule, QuillModule ],
   declarations: [ JobComponent, JobListComponent, JobDetailComponent, JobNewComponent ],
-  providers:    [ JobService ],
+  providers:    [ JobService, DatePipe ],
 })
 export class JobModule { }

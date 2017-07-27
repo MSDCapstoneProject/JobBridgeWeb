@@ -34,7 +34,9 @@
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
       'ngx-quill': 'node_modules/ngx-quill/bundles/ngx-quill.umd.js',
       'ngx-quill1': 'node_modules/ngx-quill/src/quill-editor.component',
-      'quill': 'node_modules/quill/dist/quill.js'
+      'quill': 'node_modules/quill/dist/quill.js',
+      'ng2-charts': 'node_modules/ng2-charts',
+      'chart.js': 'node_modules/chart.js/dist/Chart.js'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -54,6 +56,10 @@
         meta: {
           deps: ['quill']
         }
+      }, 
+      'ng2-charts': { 
+        main: 'ng2-charts.js', 
+        defaultExtension: 'js' 
       },
       'quill': {
         format: 'cjs'

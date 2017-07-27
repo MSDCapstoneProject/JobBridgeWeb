@@ -2,7 +2,7 @@
     <md-card-content layout-padding>
         <div id="layout">
             <div id="master">
-                <md-toolbar color="primary">
+                <md-toolbar color="primary" class="list-toolbar">
                     <span *ngIf="!showSearch" (click)="toggleSearch()">Applications</span>
                     <md-icon *ngIf="!showSearch" (click)="toggleSearch()" class="toolbar-icon">search</md-icon>
                     <md-input-container *ngIf="showSearch">
@@ -16,7 +16,7 @@
                     (click)="onSelect(application)"
                     class="listItem">
                         <md-icon md-list-icon>account_box</md-icon>
-                        <h4 md-line>{{application.JobSeeker.firstName}}&nbsp;{{application.JobSeeker.lastName}}</h4>
+                        <h4 md-line>{{application.jobSeeker.firstName}}&nbsp;{{application.jobSeeker.lastName}}</h4>
                         <p md-line> {{application.appliedOn}} </p>
                     </md-list-item>
                 </md-list>

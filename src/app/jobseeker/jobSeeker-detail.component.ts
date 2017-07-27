@@ -12,7 +12,9 @@ export class JobSeekerDetailComponent implements OnChanges {
 
   @Input() inputJobSeeker: JobSeeker;
   jobSeeker: JobSeeker;
-  genders = [ 'male', 'female' ];
+  statuses = [ 'Student', 'Resident' ];
+  genders = [ 'Male', 'Female' ];
+  selectDisabled = true;
 
   async ngOnChanges() {
     if (this.inputJobSeeker != null) {

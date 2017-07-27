@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { JobSeeker, JobSeekerService } from './jobSeeker.service';
-import { JobSeekerNameFilter } from '../shared/JobSeekerNameFilter';
+import { JobSeekerPipe } from '../shared/jobSeeker.pipe';
+import { Filter, FilterType } from '../shared/commonObject';
 
 @Component({
     selector: 'jobSeeker-list',
@@ -13,11 +14,18 @@ export class JobSeekerListComponent implements OnInit {
 
     selectedJobSeeker: JobSeeker;
     showSearch = false;
-    search = {
-        name:''
-    }
+    filter: Filter[];
+    statuses = [ 'all', 'student', 'citizen' ];
+    genders = [ 'all', 'male', 'female' ];
 
     async ngOnInit() {
+        this.filter = [
+            { type: FilterType.CONTAINS, key: "lastName", value: "" },
+            { type: FilterType.CONTAINS, key: "street", value: "" },
+            { type: FilterType.CONTAINS, key: "phone", value: "" },
+            { type: FilterType.MATCHES, key: "status", value: "all" },
+            { type: FilterType.MATCHES, key: "gender", value: "all" }
+        ];
         this.jobSeekerService.getJobSeekers();
     }
 

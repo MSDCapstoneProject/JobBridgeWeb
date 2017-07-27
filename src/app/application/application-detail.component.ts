@@ -1,21 +1,6 @@
-import { Component, ElementRef, ViewChild, OnChanges, Input } from '@angular/core';
+import { Component, OnChanges, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Application, ApplicationService } from './application.service';
-import { KeyValuePair } from '../shared/commonObject';
-import { DemoNumber } from '../shared/demoNumber';
-
-import * as Quill from 'quill';
-import { QuillEditorComponent } from 'quill';
-import Counter from '../shared/quill.counter';
-
-// override p with div tag
-
-const Parchment = Quill.import('parchment');
-let Block = Parchment.query('block');
-
-Block.tagName = 'DIV';
-Quill.register(Block /* or NewBlock */, true);
-Quill.register('modules/counter', Counter)
 
 @Component({
     selector: 'application-detail',
@@ -24,11 +9,10 @@ Quill.register('modules/counter', Counter)
 })
 export class ApplicationDetailComponent implements OnChanges {
   constructor(private router: Router, private route: ActivatedRoute, private applicationService: ApplicationService) { }
-  @ViewChild('editor') editor: QuillEditorComponent;
-
+  
   @Input() inputApplication: Application;
-
   application: Application;
+  applicationStatus: String;
 
   async ngOnChanges() {
     if (this.inputApplication != null) {
@@ -37,19 +21,39 @@ export class ApplicationDetailComponent implements OnChanges {
       this.applicationService.getApplication(id);
 
       this.applicationService.application.subscribe(
-        application => this.application = <Application> application[0],
+        application => {
+          this.application = <Application> application[0];
+          if (this.application.jobApplicationStatusId == 1) {
+            this.applicationStatus = 'Applied';
+          } else if (this.application.jobApplicationStatusId == 2) {
+            this.applicationStatus = 'Approved By Employer';
+          } else if (this.application.jobApplicationStatusId == 3) {
+            this.applicationStatus = 'Denied By Employer';
+          } else if (this.application.jobApplicationStatusId == 4) {
+            this.applicationStatus = 'Cancelled';
+          } else if (this.application.jobApplicationStatusId == 5) {
+            this.applicationStatus = 'Cancelled By Employer';
+          } else {
+            this.applicationStatus = 'Undefined';
+          }
+        },
         error => console.log("Error: ", error)
       );
     }
   }
 
   accept() {
-    this.application.applicationStatus = 'accepted';
+    this.application.jobApplicationStatusId = 2;
     this.applicationService.update(this.application);
   }
 
   deny() {
-    this.application.applicationStatus = 'denied';
+    this.application.jobApplicationStatusId = 3;
+    this.applicationService.update(this.application);
+  }
+
+  cancel() {
+    this.application.jobApplicationStatusId = 5;
     this.applicationService.update(this.application);
   }
 }

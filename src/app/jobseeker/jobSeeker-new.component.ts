@@ -10,12 +10,15 @@ import { JobSeeker, JobSeekerService } from './jobSeeker.service';
 export class JobSeekerNewComponent {
     constructor(private router: Router, private route: ActivatedRoute, private jobSeekerService: JobSeekerService) { }
 
-
     jobSeeker: JobSeeker = {
         id: null,
         firstName: '',
         lastName: '',
-        address: '',
+        street: '',
+        city: '',
+        province: '',
+        country: '',
+        postalCode: '',
         email: '',
         phone: '',
         sin: '',
@@ -24,7 +27,8 @@ export class JobSeekerNewComponent {
         gender: ''
     };
 
-    genders = [ 'male', 'female' ];
+    statuses = [ 'Student', 'Resident' ];
+    genders = [ 'Male', 'Female' ];
 
     post() {
         this.jobSeekerService.insert(this.jobSeeker);

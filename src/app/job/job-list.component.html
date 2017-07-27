@@ -1,34 +1,68 @@
-<md-card class="card">
-    <md-card-content layout-padding>
-        <div id="layout">
-            <div id="master">
-                <md-toolbar color="primary">
-                    <span *ngIf="!showSearch" (click)="toggleSearch()">Jobs</span>
-                    <md-icon *ngIf="!showSearch" (click)="toggleSearch()" class="toolbar-icon">search</md-icon>
-                    <md-input-container *ngIf="showSearch">
-                        <input [(ngModel)]="search.title" mdInput placeholder="Type job's title'">
-                    </md-input-container>
-                    <md-icon *ngIf="showSearch" (click)="toggleSearch()" class="toolbar-icon">backspace</md-icon>
-                </md-toolbar>
-                <md-list class="list">
-                    <md-list-item *ngFor="let job of jobService.jobs | async | jobNameFilter:search.title"
-                    [class.selected]="job === selectedJob"
-                    (click)="onSelect(job)"
-                    class="listItem">
-                        <md-icon md-list-icon>account_box</md-icon>
-                        <h4 md-line>{{job.title}}</h4>
-                        <p md-line> {{job.jobLocation}} </p>
-                    </md-list-item>
-                </md-list>
-            </div>
-            
-            <div id="detail">
-                <job-detail [inputJob]="selectedJob"></job-detail>
-            </div>  
+<md-sidenav-container class="paddingContent">
+    <md-sidenav #sidenav class="sidenav" mode="side">
+        <h3>
+            Filtering Options
+            <md-icon class="filter-icon" (click)="sidenav.toggle()">check_circle</md-icon>
+        </h3>
+        <div class="filter-option">
+            <h4><md-icon class="filter-icon">label</md-icon>Location</h4>
+            <md-input-container>
+                <input [(ngModel)]="filter[1].value" mdInput placeholder="Type location">
+            </md-input-container>
         </div>
-    </md-card-content>
-</md-card>
-
-<div class="buttons">
-    <button [routerLink]="['new']" md-fab color="primary"><md-icon>add</md-icon></button>
-</div>
+        <div class="filter-option">
+            <h4><md-icon class="filter-icon">label</md-icon>Category</h4>
+            <md-select placeholder="Select category" [(ngModel)]="filter[2].value" required class="input-full-width">
+                <md-option *ngFor="let jobCategory of jobService.jobCategories | async" [value]="jobCategory.id">
+                {{jobCategory.description}} [{{jobCategory.internalCode}}]
+                </md-option>
+            </md-select>
+        </div>
+        <div class="filter-option">
+            <h4><md-icon class="filter-icon">label</md-icon>Type</h4>
+            <md-select placeholder="Select type" [(ngModel)]="filter[3].value" required class="input-full-width">
+                <md-option *ngFor="let jobType of jobService.jobTypes | async" [value]="jobType.id">
+                {{jobType.description}} [{{jobType.internalCode}}]
+                </md-option>
+            </md-select>
+        </div>
+    </md-sidenav>
+    <md-card class="card">
+        <md-card-content layout-padding>
+            <div id="layout">
+                <div id="master">
+                    <md-toolbar color="primary" class="list-toolbar">
+                        <div class="list-toolbar-search">
+                            <span *ngIf="!showSearch" (click)="toggleSearch()">Jobs</span>
+                            <md-input-container *ngIf="showSearch">
+                                <input [(ngModel)]="filter[0].value" mdInput placeholder="Type title">
+                            </md-input-container>
+                        </div>
+                        <div class="list-toolbar-icon">
+                            <md-icon *ngIf="!showSearch" (click)="toggleSearch()" class="toolbar-icon">search</md-icon>
+                            <md-icon *ngIf="showSearch" (click)="toggleSearch()" class="toolbar-icon">backspace</md-icon>
+                            <md-icon (click)="sidenav.toggle()" class="toolbar-icon">reorder</md-icon>
+                        </div>
+                    </md-toolbar>
+                    <md-list class="list">
+                        <md-list-item *ngFor="let job of jobService.jobs | async | jobPipe:filter"
+                        [class.selected]="job === selectedJob"
+                        (click)="onSelect(job)"
+                        class="listItem">
+                            <md-icon md-list-icon>account_box</md-icon>
+                            <h4 md-line>{{job.title}}</h4>
+                            <p md-line> {{job.jobLocation}} </p>
+                        </md-list-item>
+                    </md-list>
+                </div>
+                
+                <div id="detail">
+                    <job-detail [inputJob]="selectedJob"></job-detail>
+                </div>  
+            </div>
+        </md-card-content>
+    </md-card>
+    <div class="buttons">
+        <button [routerLink]="['new']" md-fab color="primary"><md-icon>add</md-icon></button>
+    </div>
+</md-sidenav-container>

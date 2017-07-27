@@ -1,0 +1,12 @@
+#layout {
+  display: -webkit-flex;     /* Safari */
+  display: flex;
+}
+
+#master {
+    width: 30%;
+}
+
+#detail {
+    width: 70%;
+}

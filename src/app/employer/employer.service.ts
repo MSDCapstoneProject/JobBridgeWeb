@@ -4,14 +4,20 @@ import 'rxjs/add/operator/toPromise';
 import { Subject } from 'rxjs/Rx'
 import { MdSnackBar } from '@angular/material';
 
+import { GlobalVariable } from '../shared/global';
+
 export class Employer {
     constructor(
         public id:number,
         public name:string, 
-        public address:string, 
+        public street:string,
         public email:string, 
         public phone:string, 
-        public website:string) {
+        public website:string,
+        public city:string,
+        public province:string,
+        public country:string,
+        public postalCode:string) {
     }
 }
 
@@ -19,7 +25,7 @@ const FETCH_LATENCY = 500;
 
 @Injectable()
 export class EmployerService {
-    BASE_URL = 'http://localhost:5000';
+    BASE_URL = GlobalVariable.BASE_API_URL;
 
     private employersStore;
     private employersSubject: Subject<Employer[]> = new Subject();
@@ -40,6 +46,7 @@ export class EmployerService {
         //return this.http.get('http://localhost:5000/employers').toPromise();
         this.http.get(this.BASE_URL + '/employers').subscribe(response => {
             this.employersStore = <Employer[]>response.json();//.filter(employer => employer.id === 1);
+            console.log(this.employersStore);
             this.employersSubject.next(this.employersStore);
         }, error => {
             this.handleError("Unable to get employers");

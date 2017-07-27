@@ -2,16 +2,16 @@ import { NgModule }            from '@angular/core';
 import { CommonModule }        from '@angular/common';
 import { FormsModule }         from '@angular/forms';
 
-import { EmployerNameFilter }         from './employerNameFilter';
-import { JobSeekerNameFilter }         from './jobSeekerNameFilter';
-import { JobNameFilter }         from './jobNameFilter';
-import { JobListFilter }         from './jobListFilter';
+import { EmployerPipe }        from './employer.pipe';
+import { JobSeekerPipe }       from './jobSeeker.pipe';
+import { JobPipe }             from './job.pipe';
 import { DemoNumber }          from './demoNumber';
 import { ApplicationNameFilter } from './ApplicationNameFilter';
+import { JobStatsPipe } from './job.stats.pipe';
 
 @NgModule({
   imports:      [ CommonModule ],
-  declarations: [ EmployerNameFilter, JobSeekerNameFilter, JobNameFilter, JobListFilter, DemoNumber, ApplicationNameFilter ],
-  exports:      [ EmployerNameFilter, JobSeekerNameFilter, JobNameFilter, JobListFilter, DemoNumber, ApplicationNameFilter, CommonModule, FormsModule ]
+  declarations: [ EmployerPipe, JobSeekerPipe, JobPipe, DemoNumber, ApplicationNameFilter, JobStatsPipe ],
+  exports:      [ EmployerPipe, JobSeekerPipe, JobPipe, DemoNumber, ApplicationNameFilter, JobStatsPipe, CommonModule, FormsModule ]
 })
 export class SharedModule { }

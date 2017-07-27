@@ -5,10 +5,11 @@ import { Component } from '@angular/core';
     template: `
         <md-toolbar color="primary">
             <button md-button routerLink="/" >Job Bridge</button>   
-            <button md-button routerLink="/employers" >Employers</button>
-            <button md-button routerLink="/jobSeekers" >JobSeekers</button>
+            <!--<button md-button routerLink="/employers" >Employers</button>-->
             <button md-button routerLink="/jobs" >Jobs</button> 
             <button md-button routerLink="/applications" >Applications</button> 
+            <button md-button routerLink="/jobSeekers" >JobSeekers</button>
+            <button md-button routerLink="/reports" >Statistics</button> 
         </md-toolbar>
     `
 })

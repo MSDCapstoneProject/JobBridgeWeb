@@ -23,6 +23,10 @@ const appRoutes: Routes = [
   {
     path: 'applications',
     loadChildren: 'app/application/application.module#ApplicationModule'
+  },
+  {
+    path: 'reports',
+    loadChildren: 'app/report/report.module#ReportModule'
   }
 ];
 

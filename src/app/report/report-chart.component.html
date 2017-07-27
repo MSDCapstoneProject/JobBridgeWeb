@@ -1,0 +1,22 @@
+<div class="detail-content">
+    <div *ngIf="chart async">
+        <div *ngIf="isPieChartBound" class="donut-chart-placeholder">
+            <canvas baseChart 
+                [data]="chartData"
+                [labels]="chartLabel"
+                [chartType]="chartType"></canvas>
+        </div>
+        <div *ngIf="isLineChartBound" class="line-chart-placeholder">
+            <canvas baseChart 
+                [datasets]="chartDataset"
+                [labels]="chartLabel"
+                [options]="lineChartOptions"
+                [legend]="lineChartLegend"
+                [chartType]="chartType"></canvas>
+        </div>
+    </div>
+    <div *ngIf="!chart async">
+        <h3>Chart is not available.</h3>
+        <p>{{errorLog}}</p>
+    </div>
+</div>

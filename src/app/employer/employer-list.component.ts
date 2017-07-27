@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Employer, EmployerService } from './employer.service';
-import { EmployerNameFilter } from '../shared/EmployerNameFilter';
+import { EmployerPipe } from '../shared/employer.pipe';
+import { Filter, FilterType } from '../shared/commonObject';
 
 @Component({
     selector: 'employer-list',
@@ -13,11 +14,14 @@ export class EmployerListComponent implements OnInit {
 
     selectedEmployer: Employer;
     showSearch = false;
-    search = {
-        name:''
-    }
+    filter: Filter[];
 
     async ngOnInit() {
+        this.filter = [
+            { type: FilterType.CONTAINS, key: "name", value: "" },
+            { type: FilterType.CONTAINS, key: "street", value: "" },
+            { type: FilterType.CONTAINS, key: "phone", value: "" }
+        ];
         this.employerService.getEmployers();
     }
 

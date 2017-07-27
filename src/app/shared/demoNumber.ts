@@ -3,11 +3,17 @@ import { Injectable, Pipe, PipeTransform } from '@angular/core';
 @Pipe({name: 'demoNumber'})
 @Injectable()
 export class DemoNumber implements PipeTransform {
-  transform(value, args:string[]) : any {
+  from:number = 0;
+  transform(value, args:string) : any {
     let res = [];
-    for (let i = 0; i < value; i++) {
-        res.push((i>9 ? '' : '0') + i);
+    if (args !=null) {
+      if (args == 'year') {
+        this.from = 2000;
       }
-      return res;
+    }
+    for (let i = this.from; i < value; i++) {
+      res.push((i>9 ? '' : '0') + i);
+    }
+    return res;
   }
 }

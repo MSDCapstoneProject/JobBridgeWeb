@@ -1,50 +1,62 @@
 <div *ngIf="jobSeeker async">
-    <md-toolbar>
+    <md-toolbar class="list-toolbar">
         <span class="toolbar-spacer">ID - {{jobSeeker.id}}</span>
         <md-icon class="toolbar-icon">verified_user</md-icon>
     </md-toolbar>
-    <div class="content">
+    <div class="detail-content">
         <md-input-container>
-            <input [(ngModel)]="jobSeeker.firstName" mdInput placeholder="First name of jobSeeker" required maxlength=200>
-            <md-hint align="end">{{jobSeeker.firstName.length}} / 200</md-hint>
+            <input [(ngModel)]="jobSeeker.firstName" mdInput placeholder="First name of jobSeeker" [(disabled)]="selectDisabled">
         </md-input-container>
         <md-input-container>
-            <input [(ngModel)]="jobSeeker.lastName" mdInput placeholder="Last name of jobSeeker" required maxlength=200>
-            <md-hint align="end">{{jobSeeker.lastName.length}} / 200</md-hint>
+            <input [(ngModel)]="jobSeeker.lastName" mdInput placeholder="Last name of jobSeeker" [(disabled)]="selectDisabled">
         </md-input-container>
         <md-input-container class="input-full-width">
-            <input [(ngModel)]="jobSeeker.address" mdInput placeholder="Address" required maxlength=200>
-            <md-hint align="end">{{jobSeeker.address.length}} / 200</md-hint>
+            <input [(ngModel)]="jobSeeker.street" mdInput placeholder="Street" [(disabled)]="selectDisabled">
         </md-input-container>
         <md-input-container class="input-full-width">
-            <input [(ngModel)]="jobSeeker.email" mdInput placeholder="Email" email required maxlength=200>
-            <md-hint align="end">{{jobSeeker.email.length}} / 200</md-hint>
+            <input [(ngModel)]="jobSeeker.city" mdInput placeholder="City" [(disabled)]="selectDisabled">
         </md-input-container>
         <md-input-container class="input-full-width">
-            <input [(ngModel)]="jobSeeker.phone" mdInput placeholder="Phone number" required maxlength=20>
-            <md-hint align="end">{{jobSeeker.phone.length}} / 20</md-hint>
+            <input [(ngModel)]="jobSeeker.province" mdInput placeholder="Province" [(disabled)]="selectDisabled">
         </md-input-container>
         <md-input-container class="input-full-width">
-            <input [(ngModel)]="jobSeeker.sin" mdInput placeholder="sin number" required maxlength=200>
-            <md-hint align="end">{{jobSeeker.sin.length}} / 200</md-hint>
+            <input [(ngModel)]="jobSeeker.postalCode" mdInput placeholder="Postal code" [(disabled)]="selectDisabled">
         </md-input-container>
         <md-input-container class="input-full-width">
-            <input [(ngModel)]="jobSeeker.DOB" mdInput [mdDatepicker]="picker" placeholder="Choose a date">
+            <input [(ngModel)]="jobSeeker.email" mdInput placeholder="Email" email [(disabled)]="selectDisabled">
+        </md-input-container>
+        <md-input-container class="input-full-width">
+            <input [(ngModel)]="jobSeeker.phone" mdInput placeholder="Phone number" [(disabled)]="selectDisabled">
+        </md-input-container>
+        <md-input-container class="input-full-width">
+            <input [(ngModel)]="jobSeeker.sin" mdInput placeholder="sin number" [(disabled)]="selectDisabled">
+        </md-input-container>
+        <md-input-container class="input-full-width">
+            <input [(ngModel)]="jobSeeker.DOB" mdInput [mdDatepicker]="picker" placeholder="Choose a date" [(disabled)]="selectDisabled">
             <button mdSuffix [mdDatepickerToggle]="picker"></button>
         </md-input-container>
         <md-datepicker #picker required></md-datepicker>
-        <md-input-container class="input-full-width">
-            <input [(ngModel)]="jobSeeker.status" mdInput placeholder="status" required maxlength=200>
-            <md-hint align="end">{{jobSeeker.status.length}} / 200</md-hint>
-        </md-input-container>
-        <md-radio-group class="input-full-width" [(ngModel)]="jobSeeker.gender">
-            <md-radio-button class="radio-button" *ngFor="let gender of genders" [value]="gender">
-                {{gender}}
-            </md-radio-button>
-        </md-radio-group>
+        <div class="input-full-width">
+            <div class="inline-title">Status</div>
+            <md-radio-group class="input-full-width" [(ngModel)]="jobSeeker.status" [(disabled)]="selectDisabled">
+                <md-radio-button class="radio-button" *ngFor="let status of statuses" [value]="status">
+                    {{status}}
+                </md-radio-button>
+            </md-radio-group>
+        </div>
+        <div class="input-full-width">
+            <div class="inline-title">Gender</div>
+            <md-radio-group class="input-full-width" [(ngModel)]="jobSeeker.gender" [(disabled)]="selectDisabled">
+                <md-radio-button class="radio-button" *ngFor="let gender of genders" [value]="gender">
+                    {{gender}}
+                </md-radio-button>
+            </md-radio-group>
+        </div>
     </div>
     <div class="buttons">
+        <!--
         <button (click)="delete()" md-raised-button color="primary">Delete</button>
         <button (click)="post()" md-raised-button color="primary">Save</button>
+        -->
     </div>
 </div>

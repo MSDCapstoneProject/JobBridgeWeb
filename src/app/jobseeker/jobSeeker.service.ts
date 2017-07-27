@@ -4,12 +4,18 @@ import 'rxjs/add/operator/toPromise';
 import { Subject } from 'rxjs/Rx'
 import { MdSnackBar } from '@angular/material';
 
+import { GlobalVariable } from '../shared/global';
+
 export class JobSeeker {
     constructor(
         public id:number,
         public firstName:string, 
         public lastName:string,
-        public address:string, 
+        public street:string, 
+        public city:string,
+        public province:string,
+        public country:string,
+        public postalCode:string,
         public email:string, 
         public phone:string, 
         public sin:string,
@@ -23,7 +29,7 @@ const FETCH_LATENCY = 500;
 
 @Injectable()
 export class JobSeekerService {
-    BASE_URL = 'http://localhost:5000';
+    BASE_URL = GlobalVariable.BASE_API_URL;
 
     private jobSeekersStore;
     private jobSeekersSubject: Subject<JobSeeker[]> = new Subject();

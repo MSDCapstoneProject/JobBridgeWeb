@@ -6,10 +6,6 @@
             <md-hint align="end">{{employer.name.length}} / 200</md-hint>
         </md-input-container>
         <md-input-container class="input-full-width">
-            <input [(ngModel)]="employer.address" mdInput placeholder="Address" required maxlength=200>
-            <md-hint align="end">{{employer.address.length}} / 200</md-hint>
-        </md-input-container>
-        <md-input-container class="input-full-width">
             <input [(ngModel)]="employer.email" mdInput placeholder="Email" email required maxlength=200>
             <md-hint align="end">{{employer.email.length}} / 200</md-hint>
         </md-input-container>
@@ -20,6 +16,26 @@
         <md-input-container class="input-full-width">
             <input [(ngModel)]="employer.website" mdInput placeholder="Website address" required maxlength=200>
             <md-hint align="end">{{employer.website.length}} / 200</md-hint>
+        </md-input-container>
+        <md-input-container class="input-full-width">
+            <input [(ngModel)]="employer.street" mdInput placeholder="Street" required maxlength=200>
+            <md-hint align="end">{{employer.street.length}} / 200</md-hint>
+        </md-input-container>
+        <md-input-container class="input-full-width">
+            <input [(ngModel)]="employer.city" mdInput placeholder="City" required maxlength=200>
+            <md-hint align="end">{{employer.city.length}} / 200</md-hint>
+        </md-input-container>
+        <md-input-container class="input-full-width">
+            <input [(ngModel)]="employer.province" mdInput placeholder="Province" required maxlength=200>
+            <md-hint align="end">{{employer.province.length}} / 200</md-hint>
+        </md-input-container>
+        <md-input-container class="input-full-width">
+            <input [(ngModel)]="employer.country" mdInput placeholder="Country" required maxlength=200>
+            <md-hint align="end">{{employer.country.length}} / 200</md-hint>
+        </md-input-container>
+        <md-input-container class="input-full-width">
+            <input [(ngModel)]="employer.postalCode" mdInput placeholder="Postal code" required maxlength=200>
+            <md-hint align="end">{{employer.postalCode.length}} / 200</md-hint>
         </md-input-container>
     </md-card-content>
     <md-card-actions class="buttons">

@@ -1,34 +1,59 @@
-<md-card class="card">
-    <md-card-content layout-padding>
-        <div id="layout">
-            <div id="master">
-                <md-toolbar color="primary">
-                    <span *ngIf="!showSearch" (click)="toggleSearch()">Employers</span>
-                    <md-icon *ngIf="!showSearch" (click)="toggleSearch()" class="toolbar-icon">search</md-icon>
-                    <md-input-container *ngIf="showSearch">
-                        <input [(ngModel)]="search.name" mdInput placeholder="Type employer's name'">
-                    </md-input-container>
-                    <md-icon *ngIf="showSearch" (click)="toggleSearch()" class="toolbar-icon">backspace</md-icon>
-                </md-toolbar>
-                <md-list class="list">
-                    <md-list-item *ngFor="let employer of employerService.employers | async | employerNameFilter:search.name"
-                    [class.selected]="employer === selectedEmployer"
-                    (click)="onSelect(employer)"
-                    class="listItem">
-                        <md-icon md-list-icon>account_box</md-icon>
-                        <h4 md-line>{{employer.name}}</h4>
-                        <p md-line> {{employer.address}} </p>
-                    </md-list-item>
-                </md-list>
-            </div>
-            
-            <div id="detail">
-                <employer-detail [inputEmployer]="selectedEmployer"></employer-detail>
-            </div>  
+<md-sidenav-container class="paddingContent">
+    <md-sidenav #sidenav class="sidenav" mode="side">
+        <h3>
+            Filtering Options
+            <md-icon class="filter-icon" (click)="sidenav.toggle()">check_circle</md-icon>
+        </h3>
+        <div class="filter-option">
+            <h4><md-icon class="filter-icon">label</md-icon>Address</h4>
+            <md-input-container>
+                <input [(ngModel)]="filter[1].value" mdInput placeholder="Type address">
+            </md-input-container>
         </div>
-    </md-card-content>
-</md-card>
+        <div class="filter-option">
+            <h4><md-icon class="filter-icon">label</md-icon>Phone number</h4>
+            <md-input-container>
+                <input [(ngModel)]="filter[2].value" mdInput placeholder="Type phone number">
+            </md-input-container>
+        </div>
+    </md-sidenav>
+    <md-card class="card">
+        <md-card-content layout-padding>
+            <div id="layout">
+                <div id="master">
+                    <md-toolbar color="primary" class="list-toolbar">
+                        <div class="list-toolbar-search">
+                            <span *ngIf="!showSearch" (click)="toggleSearch()">Employers</span>
+                            <md-input-container *ngIf="showSearch">
+                                <input [(ngModel)]="filter[0].value" mdInput placeholder="Type name">
+                            </md-input-container>
+                        </div>
+                        <div class="list-toolbar-icon">
+                            <md-icon *ngIf="!showSearch" (click)="toggleSearch()" class="toolbar-icon">search</md-icon>
+                            <md-icon *ngIf="showSearch" (click)="toggleSearch()" class="toolbar-icon">backspace</md-icon>
+                            <md-icon (click)="sidenav.toggle()" class="toolbar-icon">reorder</md-icon>
+                        </div>
+                    </md-toolbar>
+                    <md-list class="list">
+                        <md-list-item *ngFor="let employer of employerService.employers | async | employerPipe:filter"
+                        [class.selected]="employer === selectedEmployer"
+                        (click)="onSelect(employer)"
+                        class="listItem">
+                            <md-icon md-list-icon>account_box</md-icon>
+                            <h4 md-line>{{employer.name}}</h4>
+                            <p md-line> {{employer.street}} </p>
+                        </md-list-item>
+                    </md-list>
+                </div>
+                <div id="detail">
+                    <employer-detail [inputEmployer]="selectedEmployer"></employer-detail>
+                </div>  
+            </div>  
+        </md-card-content>
+    </md-card>
+    <div class="buttons">
+        <button [routerLink]="['new']" md-fab color="primary"><md-icon>add</md-icon></button>
+    </div>
+</md-sidenav-container>
 
-<div class="buttons">
-    <button [routerLink]="['new']" md-fab color="primary"><md-icon>add</md-icon></button>
-</div>
+

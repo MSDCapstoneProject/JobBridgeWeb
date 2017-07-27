@@ -6,9 +6,12 @@ import { ViewEncapsulation } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `
-    <nav></nav>
-    <div class="content">
-    <router-outlet></router-outlet></div>
+    <nav id="header"></nav>
+    <div id="content">
+      <div id="scrollableContent">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
   `,
   encapsulation: ViewEncapsulation.None,
 })

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Job, JobService } from './job.service';
-import { JobNameFilter } from '../shared/jobNameFilter';
+import { Job, JobCategory, JobType, JobService } from './job.service';
+import { JobPipe } from '../shared/job.pipe';
+import { Filter, FilterType } from '../shared/commonObject';
 
 @Component({
     selector: 'job-list',
@@ -13,12 +14,18 @@ export class JobListComponent implements OnInit {
 
     selectedJob: Job;
     showSearch = false;
-    search = {
-        title:''
-    }
+    filter: Filter[];
 
     async ngOnInit() {
+        this.filter = [
+            { type: FilterType.CONTAINS, key: "title", value: "" },
+            { type: FilterType.CONTAINS, key: "street", value: "" },
+            { type: FilterType.MATCHES, key: "jobCategoryId", value: "" },
+            { type: FilterType.MATCHES, key: "jobTypeId", value: "" }
+        ];
         this.jobService.getJobs();
+        this.jobService.getJobCategories();
+        this.jobService.getJobTypes();
     }
 
     onSelect(job: Job): void {

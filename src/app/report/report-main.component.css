@@ -1,0 +1,63 @@
+.subtitle {
+  height: 220px;
+  margin: 15px 160px;
+  background-position: right center;
+  background-image: url("app/images/statistics.png");
+  background-repeat: no-repeat;
+}
+
+.subtitle p {
+  padding: 15px;
+  margin-right: 300px;
+  text-align: right;
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 200%;
+}
+
+.subtitle h3 {
+  margin-right: 300px;
+  text-align: right;
+  color: #666;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: lighter;
+  font-size: 150%;
+  line-height: 35px;
+}
+
+.subtitle h3 span {
+  display: block;
+}
+
+.sub-bottom {
+  background-color: #369;
+}
+
+.sub-bottom-tile {
+  margin:100px 0px;
+  vertical-align: middle;
+}
+
+.sub-bottom-icon {
+  width: 30%;
+}
+
+.sub-bottom-content {
+  margin-left: 20px;
+}
+
+.sub-bottom .sub-bottom-content p {
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 200%;
+  display: block;
+}
+
+.sub-bottom .sub-bottom-content h3 {
+  color: #CCC;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: lighter;
+  font-size: 100%;
+  line-height: 10px;
+  display: block;
+}

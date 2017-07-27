@@ -11,12 +11,13 @@ import { ApplicationListComponent } from './application-list.component';
 import { ApplicationDetailComponent } from './application-detail.component';
 
 import { ApplicationRoutingModule }   from './application-routing.module';
+import { JobService } from '../job/job.service';
 import { ApplicationService } from './application.service';
-import { QuillModule } from 'ngx-quill';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
-  imports:      [ CommonModule, FormsModule, ReactiveFormsModule, HttpModule, MaterialModule, MdNativeDateModule, SharedModule, ApplicationRoutingModule, QuillModule ],
+  imports:      [ CommonModule, FormsModule, ReactiveFormsModule, HttpModule, MaterialModule, MdNativeDateModule, SharedModule, ApplicationRoutingModule, ChartsModule ],
   declarations: [ ApplicationComponent, JobListComponent, ApplicationListComponent, ApplicationDetailComponent ],
-  providers:    [ ApplicationService ],
+  providers:    [ JobService, ApplicationService ],
 })
 export class ApplicationModule { }

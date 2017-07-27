@@ -13,10 +13,14 @@ export class EmployerNewComponent {
     employer: Employer = {
         id: null,
         name: '',
-        address: '',
+        street: '',
         email: '',
         phone: '',
-        website: ''
+        website: '',
+        city: '',
+        province: '',
+        country: '',
+        postalCode: ''
     };
 
     post() {

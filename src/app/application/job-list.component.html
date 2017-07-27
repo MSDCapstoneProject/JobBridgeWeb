@@ -1,44 +1,79 @@
-<md-card class="card">
-    <md-card-content layout-padding>
-        <md-list>
-            <h3 md-subheader>Filters</h3>
-            <md-list-item>
-                <md-input-container>
-                    <input [(ngModel)]="search.title" mdInput placeholder="Type title">
-                </md-input-container>
-            </md-list-item>
-            <md-list-item>
-                <md-input-container>
-                    <input [(ngModel)]="search.location" mdInput placeholder="Type location">
-                </md-input-container>
-            </md-list-item>
-            <md-list-item>
+<md-sidenav-container class="paddingContent">
+    <md-sidenav #sidenav class="sidenav" mode="side">
+        <h3>
+            Filtering Options
+            <md-icon class="filter-icon" (click)="sidenav.toggle()">check_circle</md-icon>
+        </h3>
+        <div class="filter-option">
+            <h4><md-icon class="filter-icon">label</md-icon>Location</h4>
+            <md-input-container>
+                <input [(ngModel)]="filter[1].value" mdInput placeholder="Type location">
+            </md-input-container>
+        </div>
+        <div class="filter-option">
+            <h4><md-icon class="filter-icon">label</md-icon>Category</h4>
+            <md-select placeholder="Select category" [(ngModel)]="filter[3].value" required class="input-full-width">
+                <md-option *ngFor="let jobCategory of jobService.jobCategories | async" [value]="jobCategory.id">
+                {{jobCategory.description}} [{{jobCategory.internalCode}}]
+                </md-option>
+            </md-select>
+        </div>
+        <div class="filter-option">
+            <h4><md-icon class="filter-icon">label</md-icon>Type</h4>
+            <md-select placeholder="Select type" [(ngModel)]="filter[4].value" required class="input-full-width">
+                <md-option *ngFor="let jobType of jobService.jobTypes | async" [value]="jobType.id">
+                {{jobType.description}} [{{jobType.internalCode}}]
+                </md-option>
+            </md-select>
+        </div>
+    </md-sidenav>
+    <md-card class="card">
+        <md-card-content layout-padding>
+            <md-toolbar color="primary">
+                <div class="list-toolbar-search">
+                    Filters
+                </div>
+                <div class="list-toolbar-icon">
+                    <md-icon (click)="sidenav.toggle()" class="toolbar-icon">reorder</md-icon>
+                </div>
+            </md-toolbar>
+            <div class="card">
+                <div class="input-full-width input-single-row">
+                    <md-input-container class="input-full-width">
+                        <input [(ngModel)]="filter[0].value" mdInput placeholder="Type title" maxlength=200>
+                    </md-input-container>
+                </div>
                 <div class="input-full-width input-single-row">
                     <div class="inline-title">Status</div>
-                    <md-radio-group class="input-full-width" [(ngModel)]="search.status">
+                    <md-radio-group class="input-full-width" [(ngModel)]="filter[2].value">
                         <md-radio-button class="radio-button" *ngFor="let status of statuses" [value]="status.key">
                             {{status.value}}
                         </md-radio-button>
                     </md-radio-group>
                 </div>
-            </md-list-item>
-            <md-divider></md-divider>
-            <h3 md-subheader>Jobs</h3>
-            <md-grid-list cols="2" rowHeight="500px">
-                <md-grid-tile *ngFor="let job of applicationService.jobs | async | jobListFilter:search">
+            </div>
+            <md-toolbar color="indigo">Jobs</md-toolbar>
+            <md-grid-list cols="3" rowHeight="4:3">
+                <md-grid-tile *ngFor="let job of jobService.jobs | async | jobPipe:filter">
                     <md-card class="md-card-item">
-                        <md-card-header>
+                        <md-card-header class="md-card-item-hearder">
                             <md-card-title>{{job.title}}</md-card-title>
-                            <md-card-subtitle>{{job.jobLocation}}</md-card-subtitle>
+                            <md-card-subtitle>{{job.street}} {{job.city}} {{job.province}}</md-card-subtitle>
+                            <md-card-subtitle>{{job.country}} {{job.postalCode}}</md-card-subtitle>
                         </md-card-header>
-                        <img md-card-image src="app/images/location.png">
                         <md-card-content>
-                            <p>{{job.jobType}}</p>
-                            <p>{{job.jobCategory}}</p>
                             <p>
-                                Viewed : 50,
-                                Applied : 300
+                                Viewed : {{job.views}}
                             </p>
+                            <p>
+                                Applied : {{job.filledPositions ? job.filledPositions : 0}},
+                                Total : {{job.totalPositions ? job.totalPositions : 0}}
+                            </p>
+                            <md-progress-bar
+                                [color]="primary"
+                                [mode]="determinate"
+                                [value]="job.filledPositions / job.totalPositions * 100">
+                            </md-progress-bar>
                         </md-card-content>
                         <md-card-actions>
                             <button md-button (click)="onSelect(job)">View Detail</button>
@@ -46,6 +81,6 @@
                     </md-card>
                 </md-grid-tile>
             </md-grid-list>
-        </md-list>
-    </md-card-content>
-</md-card>
+        </md-card-content>
+    </md-card>
+</md-sidenav-container>

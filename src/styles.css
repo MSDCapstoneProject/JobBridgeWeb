@@ -5,16 +5,69 @@ html {
 body {
   margin: 0px;
   height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
   background: linear-gradient(#EFEFEF 30%, #FFFFFF 70%);
+  min-height: 100%;
+  position: relative;
 }
 
-.content {
+#header {
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  position: absolute;
+}
+
+#content {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 64px 0px 0px 0px;
+  overflow: hidden;
+}
+
+#content #scrollableContent {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
+#content #scrollableContent .paddingContent {
+  overflow: hidden;
+  height: 100%;
+}
+
+.content-detail {
+  width: 100%;
+  height: 35px;
+  vertical-align: middle;
+}
+
+.content-detail .title {
+  width: 30%;
+  height: 100%;
+  text-align: right;
+  padding-right: 20px;
+  color: #666;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: lighter;
+  font-size: 120%;
+  display:inline-block;
+}
+
+.content-detail span {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 150%;
+}
+
+.card {
   margin: 10px;
 }
 
 .buttons {
   text-align: right;
-  margin-top: 10px;
+  margin: 10px;
 }
 
 h1 {
@@ -25,8 +78,18 @@ h1 {
 
 h3 {
   color: #369;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 150%;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: lighter;
+  font-size: 200%;
+  line-height: 35px;
+}
+
+h4 {
+  vertical-align: bottom;
+}
+
+.detail-content {
+  margin: 20px;
 }
 
 .input-full-width {
@@ -42,24 +105,72 @@ h3 {
   height: 45px;
 }
 
+.list-toolbar {
+  height: 80px; 
+}
+
+.list-toolbar .mat-toolbar-layout .mat-toolbar-row {
+  height: 80px;
+}
+
+.list-toolbar .md-input-container .md-errors-spacer{
+  min-height: 0px !important;
+}
+
+.list-toolbar-search {
+  width: 70%;
+}
+
+.list-toolbar-icon {
+  width: 30%;
+  text-align: right;
+}
+
 .toolbar-icon {
-  padding: 0 14px;
+  padding: 0 2px;
+  align-content: center;
+  vertical-align: middle;
 }
 .toolbar-spacer {
   flex: 1 1 auto;
+}
+
+.filter-icon {
+  padding: 0 2px;
+  align-content: center;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .list {
   border-left: solid 1px #EFEFEF;
   border-right: solid 1px #EFEFEF;
 }
+
 .listItem {
   border-bottom: solid 1px #EFEFEF;
 }
-.md-card-item {
-  margin-top: 10px;
-  margin-right: 15px;
+
+.mat-grid-tile { 
+  padding-top: 100px;
 }
+
+.md-card-item {
+  width: 90%;
+  margin: 15px;
+}
+
+.md-card-item-hearder {
+  text-align: center;
+  vertical-align: middle;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.mat-card-header-text {
+  width: 100%;
+}
+
 .inline-title {
   margin-right: 10px;
   display:inline;
@@ -84,4 +195,36 @@ h3 {
 
 .radio-button {
   margin: 5px;
+}
+
+.vertical-radio-group {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.content-container {
+  width: 500px;
+  height: 300px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.sidenav-content {
+  height: 100%;
+  align-items: left;
+  justify-content: left;
+}
+
+.sidenav {
+  width: 25%;
+  background-color: #EFEFEF;
+  padding: 20px;
+}
+
+.filter-option {
+  padding-top: 10px;
+}
+
+.donut-chart-placeholder {
+  max-width: 480px;
+  margin:auto;
 }

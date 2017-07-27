@@ -1,27 +1,75 @@
 <div *ngIf="application async">
-    <md-toolbar>
+    <md-toolbar class="list-toolbar">
         <span class="toolbar-spacer">ID - {{application.id}}</span>
         <md-icon class="toolbar-icon">verified_user</md-icon>
     </md-toolbar>
-    <div class="content">
-        <div class="inline-title">Name</div>
-        <h3>{{application.JobSeeker.lastName}}&nbsp;{{application.JobSeeker.firstName}}</h3><br>
-        <div class="inline-title">Applied Date</div>
-        <h3>{{application.appliedOn}}</h3><br>
-        <div class="inline-title">Status</div>
-        <h3>{{application.applicationStatus}}</h3><br>
-        <h1>Applicant Information</h1>
-        <div class="inline-title">Id: </div>{{application.JobSeeker.id}}<br>
-        <div class="inline-title">Address: </div>{{application.JobSeeker.address}}<br>
-        <div class="inline-title">Email: </div>{{application.JobSeeker.email}}<br>
-        <div class="inline-title">Phone: </div>{{application.JobSeeker.phone}}<br>
-        <div class="inline-title">SIN: </div>{{application.JobSeeker.sin}}<br>
-        <div class="inline-title">DOB: </div>{{application.JobSeeker.DOB}}<br>
-        <div class="inline-title">Status: </div>{{application.JobSeeker.status}}<br>
-        <div class="inline-title">Gender: </div>{{application.JobSeeker.gender}}<br>
+    <div class="detail-content">
+        <h3>Application Information</h3>
+        <div class="content-detail">
+            <div class="title">Name</div>
+            <span>{{application.jobSeeker.lastName}}&nbsp;{{application.jobSeeker.firstName}}</span>
+        </div>
+        <div class="content-detail">
+            <div class="title">Applied Date</div>
+            <span>{{application.appliedOn}}</span>
+        </div>
+        <div class="content-detail">
+            <div class="title">Status</div>
+            <span>{{applicationStatus}}</span>
+        </div>
+        <h3>Applicant Information</h3>
+        <div class="content-detail">
+            <div class="title">ID</div>
+            <span>{{application.jobSeeker.id}}</span>
+        </div>
+        <div class="content-detail">
+            <div class="title">Street</div>
+            <span>{{application.jobSeeker.street}}</span>
+        </div>
+        <div class="content-detail">
+            <div class="title">City</div>
+            <span>{{application.jobSeeker.city}}</span>
+        </div>
+        <div class="content-detail">
+            <div class="title">Province</div>
+            <span>{{application.jobSeeker.province}}</span>
+        </div>
+        <div class="content-detail">
+            <div class="title">Country</div>
+            <span>{{application.jobSeeker.country}}</span>
+        </div>
+        <div class="content-detail">
+            <div class="title">Postal code</div>
+            <span>{{application.jobSeeker.postalCode}}</span>
+        </div>
+        <div class="content-detail">
+            <div class="title">Email</div>
+            <span>{{application.jobSeeker.email}}</span>
+        </div>
+        <div class="content-detail">
+            <div class="title">Phone</div>
+            <span>{{application.jobSeeker.phone}}</span>
+        </div>
+        <div class="content-detail">
+            <div class="title">SIN</div>
+            <span>{{application.jobSeeker.sin}}</span>
+        </div>
+        <div class="content-detail">
+            <div class="title">DOB</div>
+            <span>{{application.jobSeeker.DOB}}</span>
+        </div>
+        <div class="content-detail">
+            <div class="title">Status</div>
+            <span>{{application.jobSeeker.status}}</span>
+        </div>
+        <div class="content-detail">
+            <div class="title">Gender</div>
+            <span>{{application.jobSeeker.gender}}</span>
+        </div>
     </div>
     <div class="buttons">
-        <button (click)="accept()" md-raised-button color="primary">Accept</button>
+        <button (click)="cancel()" md-raised-button color="primary">Cancel</button>
         <button (click)="deny()" md-raised-button color="primary">Deny</button>
+        <button (click)="accept()" md-raised-button color="primary">Approve</button>
     </div>
 </div>

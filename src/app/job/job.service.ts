@@ -6,11 +6,17 @@ import { MdSnackBar } from '@angular/material';
 
 import { Employer } from '../employer/employer.service';
 
+import { GlobalVariable } from '../shared/global';
+
 export class Job {
     constructor(
         public id:number,
         public title:string, 
-        public jobLocation:string,
+        public street:string,
+        public city:string,
+        public province:string,
+        public country:string,
+        public postalCode:string,
         public startDate:string, 
         public endDate:string, 
         public startTime:string, 
@@ -20,10 +26,12 @@ export class Job {
         public postDate:string,
         public expiryDate:string,
         public status:boolean,
-        public EmployerId:number,
-        public JobTypeId:number,
-        public JobCategoryId:number,
-        public totalPositions:number ) {
+        public employerId:number,
+        public jobTypeId:number,
+        public jobCategoryId:number,
+        public views:number,
+        public totalPositions:number,
+        public filledPositions:number ) {
     }
 }
 
@@ -31,7 +39,11 @@ export class JobList {
     constructor(
         public id:number,
         public title:string, 
-        public jobLocation:string,
+        public street:string,
+        public city:string,
+        public province:string,
+        public country:string,
+        public postalCode:string,
         public startDate:string, 
         public endDate:string, 
         public startTime:string, 
@@ -41,13 +53,15 @@ export class JobList {
         public postDate:string,
         public expiryDate:string,
         public status:boolean,
-        public EmployerId:number,
-        public JobTypeId:number,
-        public JobCategoryId:number,
+        public employerId:number,
+        public jobTypeId:number,
+        public jobCategoryId:number,
         public Employer:Employer,
         public JobType:string,
         public JobCategory:string,
-        public totalPositions:number ) {
+        public views:number,
+        public totalPositions:number,
+        public filledPositions:number ) {
     }
 }
 
@@ -67,19 +81,11 @@ export class JobType {
     }
 }
 
-export class JobSearchArgs {
-    constructor(
-        public title:string,
-        public location:string,
-        public status:number ) {
-    }
-}
-
 const FETCH_LATENCY = 500;
 
 @Injectable()
 export class JobService {
-    BASE_URL = 'http://localhost:5000';
+    BASE_URL = GlobalVariable.BASE_API_URL;
 
     private jobsStore;
     private jobsSubject: Subject<JobList[]> = new Subject();
@@ -139,10 +145,12 @@ export class JobService {
 
     async insert(job: Job) {
         try {
+            job.employerId = GlobalVariable.BASE_EMPLOYER_ID;
+            
             let body = JSON.stringify(job);
             let headers = new Headers({ 'Content-Type': 'application/json' });
             let options = new RequestOptions({ headers: headers });
-            console.log(body);
+            
             var response = await this.http.post(this.BASE_URL + '/jobs/add', body, options).toPromise();
             // response is not a object
             this.getJobs();

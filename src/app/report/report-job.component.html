@@ -1,0 +1,74 @@
+<md-card class="card">
+    <md-card-content layout-padding>
+        <div id="layout">
+            <div id="master">
+                <md-toolbar color="primary" class="list-toolbar">
+                    Available Statistics
+                </md-toolbar>
+                <md-list class="list">
+                    <md-list-item [class.selected]="'City' === selectedChart" (click)="onSelect('City')" class="listItem">
+                        <md-icon md-list-icon>pie_chart_outlined</md-icon>
+                        <h4 md-line>City</h4>
+                    </md-list-item>
+                    <md-list-item [class.selected]="'Jobtype' === selectedChart" (click)="onSelect('Jobtype')" class="listItem">
+                        <md-icon md-list-icon>pie_chart_outlined</md-icon>
+                        <h4 md-line>Job Type</h4>
+                    </md-list-item>
+                    <md-list-item [class.selected]="'Jobcategory' === selectedChart" (click)="onSelect('Jobcategory')" class="listItem">
+                        <md-icon md-list-icon>pie_chart_outlined</md-icon>
+                        <h4 md-line>Job Category</h4>
+                    </md-list-item>
+                    <md-list-item [class.selected]="'Views' === selectedChart" (click)="onSelect('Views')" class="listItem">
+                        <md-icon md-list-icon>insert_chart</md-icon>
+                        <h4 md-line>Monthly Views</h4>
+                    </md-list-item>
+                    <md-list-item [class.selected]="'Viewsbytype' === selectedChart" (click)="onSelect('Viewsbytype')" class="listItem">
+                        <md-icon md-list-icon>show_chart</md-icon>
+                        <h4 md-line>Monthly Views By Job Type</h4>
+                    </md-list-item>
+                    <md-list-item [class.selected]="'Viewsbycategory' === selectedChart" (click)="onSelect('Viewsbycategory')" class="listItem">
+                        <md-icon md-list-icon>show_chart</md-icon>
+                        <h4 md-line>Monthly Views By Job Category</h4>
+                    </md-list-item>
+                </md-list>                 
+            </div>
+            <div id="detail">
+                <md-toolbar class="list-toolbar">
+                    <span class="toolbar-spacer"><h4>{{selectedChartName}}</h4></span>
+                </md-toolbar>
+                <div class="detail-content">
+                    <div class="input-full-width input-single-row">
+                        <md-select placeholder="Year" [(ngModel)]="selectedYear" floatPlaceholder="never">
+                            <md-option *ngFor="let key of '2099' | demoNumber:'year'" [value]="key">{{ key }}</md-option>
+                        </md-select>
+                        <md-select placeholder="Month" [(ngModel)]="selectedMonth" floatPlaceholder="never" [(disabled)]="selectMonthDisabled">
+                            <md-option *ngFor="let month of months" [value]="month.id">{{ month.name }}</md-option>
+                        </md-select>
+                    </div><!--
+                    <div class="input-full-width input-single-row">
+                        <md-select placeholder="Select job" [(ngModel)]="selectedJob" required class="input-full-width">
+                            <md-option *ngFor="let job of jobService.jobs | async" [value]="job">
+                                {{job.title}}
+                            </md-option>
+                        </md-select>
+                        <md-input-container>
+                            <input mdInput placeholder="Select job" [mdAutocomplete]="auto" [(ngModel)]="selectedJob" [formControl]="jobCtrl">
+                        </md-input-container>
+                        
+                        <md-autocomplete #auto="mdAutocomplete">
+                            <md-option *ngFor="let job of jobService.jobs | async" [value]="job">
+                                {{job.title}}
+                            </md-option>
+                        </md-autocomplete>
+                    </div>
+                    -->
+                </div>
+                <report-chart [inputChart]="selectedChart" 
+                                 [inputJob]="selectedJob" 
+                                 [inputYear]="selectedYear" 
+                                 [inputMonth]="selectedMonth">
+                </report-chart>
+            </div>
+        </div>
+    </md-card-content>
+</md-card>
