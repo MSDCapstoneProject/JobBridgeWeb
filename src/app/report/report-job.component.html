@@ -30,6 +30,10 @@
                         <md-icon md-list-icon>show_chart</md-icon>
                         <h4 md-line>Monthly Views By Job Category</h4>
                     </md-list-item>
+                    <md-list-item [class.selected]="'Rating' === selectedChart" (click)="onSelect('Rating')" class="listItem">
+                        <md-icon md-list-icon>pie_chart_outlined</md-icon>
+                        <h4 md-line>Rating</h4>
+                    </md-list-item>
                 </md-list>                 
             </div>
             <div id="detail">
@@ -44,24 +48,23 @@
                         <md-select placeholder="Month" [(ngModel)]="selectedMonth" floatPlaceholder="never" [(disabled)]="selectMonthDisabled">
                             <md-option *ngFor="let month of months" [value]="month.id">{{ month.name }}</md-option>
                         </md-select>
-                    </div><!--
-                    <div class="input-full-width input-single-row">
-                        <md-select placeholder="Select job" [(ngModel)]="selectedJob" required class="input-full-width">
+                    </div>
+                    <div class="input-full-width">
+                        <md-select placeholder="Select job" [(ngModel)]="selectedJob" class="input-full-width" [(disabled)]="selectJobDisabled">
                             <md-option *ngFor="let job of jobService.jobs | async" [value]="job">
                                 {{job.title}}
                             </md-option>
                         </md-select>
+                        <!--
                         <md-input-container>
                             <input mdInput placeholder="Select job" [mdAutocomplete]="auto" [(ngModel)]="selectedJob" [formControl]="jobCtrl">
                         </md-input-container>
-                        
                         <md-autocomplete #auto="mdAutocomplete">
                             <md-option *ngFor="let job of jobService.jobs | async" [value]="job">
                                 {{job.title}}
                             </md-option>
-                        </md-autocomplete>
+                        </md-autocomplete>-->
                     </div>
-                    -->
                 </div>
                 <report-chart [inputChart]="selectedChart" 
                                  [inputJob]="selectedJob" 

@@ -38,6 +38,7 @@ export class ReportJobComponent implements OnInit {
     ];
 
     selectMonthDisabled = false; 
+    selectJobDisabled = true; 
 
     constructor(private route: ActivatedRoute, private jobService: JobService) { 
         this.jobCtrl = new FormControl();
@@ -68,6 +69,11 @@ export class ReportJobComponent implements OnInit {
             this.selectedMonth = new Date().getMonth() + 1;
             this.selectMonthDisabled = false;
         }
+        if(chart == 'Rating') {
+            this.selectJobDisabled = false; 
+        } else {
+            this.selectJobDisabled = true; 
+        }
         switch(chart) {
             case 'City':
                 this.selectedChartName = 'City';
@@ -86,6 +92,9 @@ export class ReportJobComponent implements OnInit {
                 break;
             case 'Viewsbycategory':
                 this.selectedChartName = 'Views By Job Category';
+                break;
+            case 'Rating':
+                this.selectedChartName = 'Rating';
                 break;
             default:
                 this.selectedChartName = 'Report';

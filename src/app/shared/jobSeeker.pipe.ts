@@ -18,7 +18,7 @@ export class JobSeekerPipe implements PipeTransform {
         if(arg.type == FilterType.CONTAINS) {
           jobSeekers = jobSeekers.filter(jobSeeker => jobSeeker[arg.key].toLowerCase().indexOf(arg.value.toLowerCase()) !== -1);
         }
-        if(arg.type == FilterType.MATCHES && arg.value != 'all') {
+        if(arg.type == FilterType.MATCHES && arg.value != 'All') {
           jobSeekers = jobSeekers.filter(jobSeeker => jobSeeker[arg.key] == arg.value);
         }
       });

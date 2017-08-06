@@ -65,6 +65,13 @@ export class JobsByMonthByCategory {
     }
 }
 
+export class JobsByRating {
+    constructor(
+        public thumb:string,
+        public data:number) {
+    }
+}
+
 export class LikesPerMonth {
     constructor(
         public yyyymm:string,
@@ -102,14 +109,13 @@ export class ReportService {
         //this.Report.share();
     }
 
-    getJobsByCity(employerId: number, year: number, month: number) {
+    getJobsByCity(year: number, month: number) {
         this.chartData = {data:[], label:[]};
         return new Promise<ChartData>(resolve => {
             setTimeout(() => { 
-                employerId = GlobalVariable.BASE_EMPLOYER_ID;
-                this.http.get(this.BASE_URL + '/statistics/jobsByCity?employerId=' + employerId
+                this.http.get(this.BASE_URL + '/statistics/jobsByCity?employerId=' + GlobalVariable.BASE_EMPLOYER_ID
                                             + '&year=' + year
-                                            + '&month=' + (month==1?'':month)).subscribe(response => {
+                                            + '&month=' + (month?month:'')).subscribe(response => {
                     response.json().forEach(node => {
                         this.chartData.data.push((<JobsByCity>node).data);
                         this.chartData.label.push((<JobsByCity>node).city);
@@ -122,14 +128,14 @@ export class ReportService {
         });
     }
 
-    getJobsByType(employerId: number, year: number, month: number) {
+    getJobsByType(year: number, month: number) {
         this.chartData = {data:[], label:[]};
         return new Promise<ChartData>(resolve => {
             setTimeout(() => { 
-                employerId = GlobalVariable.BASE_EMPLOYER_ID;
-                this.http.get(this.BASE_URL + '/statistics/jobsByJobType?employerId=' + employerId
+
+                this.http.get(this.BASE_URL + '/statistics/jobsByJobType?employerId=' + GlobalVariable.BASE_EMPLOYER_ID
                                             + '&year=' + year
-                                            + '&month=' + (month==1?'':month)).subscribe(response => {
+                                            + '&month=' + (month?month:'')).subscribe(response => {
                     response.json().forEach(node => {
                         this.chartData.data.push((<JobsByType>node).data);
                         this.chartData.label.push((<JobsByType>node).description);
@@ -142,14 +148,13 @@ export class ReportService {
         });
     }
 
-    getJobsByCategory(employerId: number, year: number, month: number) {
+    getJobsByCategory(year: number, month: number) {
         this.chartData = {data:[], label:[]};
         return new Promise<ChartData>(resolve => {
             setTimeout(() => { 
-                employerId = GlobalVariable.BASE_EMPLOYER_ID;
-                this.http.get(this.BASE_URL + '/statistics/jobsByJobCategory?employerId=' + employerId
+                this.http.get(this.BASE_URL + '/statistics/jobsByJobCategory?employerId=' + GlobalVariable.BASE_EMPLOYER_ID
                                             + '&year=' + year
-                                            + '&month=' + (month==1?'':month)).subscribe(response => {
+                                            + '&month=' + (month?month:'')).subscribe(response => {
                     response.json().forEach(node => {
                         this.chartData.data.push((<JobsByCategory>node).data);
                         this.chartData.label.push((<JobsByCategory>node).description);
@@ -162,13 +167,12 @@ export class ReportService {
         });
     }
 
-    getJobsByMonthlyViews(employerId: number, year: number) {
+    getJobsByMonthlyViews(year: number) {
         this.chartDataset = {data:[], label:[]};
         //this.chartDataset = {data:[{data:[], label:[]}], label:[]};
         return new Promise<ChartDataset>(resolve => {
             setTimeout(() => { 
-                employerId = GlobalVariable.BASE_EMPLOYER_ID;
-                this.http.get(this.BASE_URL + '/statistics/jobsByMonthlyViews?employerId=' + employerId
+                this.http.get(this.BASE_URL + '/statistics/jobsByMonthlyViews?employerId=' + GlobalVariable.BASE_EMPLOYER_ID
                                             + '&year=' + year).subscribe(response => {
                     var data:ChartData = {data:[], label:[]};                      
                     response.json().forEach(node => {
@@ -185,13 +189,12 @@ export class ReportService {
         });
     }
 
-    getJobsByMonthlyViewsByType(employerId: number, year: number) {
+    getJobsByMonthlyViewsByType(year: number) {
         this.chartDataset = {data:[], label:[]};
         //this.chartDataset = {data:[{data:[], label:[]}], label:[]};
         return new Promise<ChartDataset>(resolve => {
             setTimeout(() => { 
-                employerId = GlobalVariable.BASE_EMPLOYER_ID;
-                this.http.get(this.BASE_URL + '/statistics/jobsByMonthlyViewsByJobType?employerId=' + employerId
+                this.http.get(this.BASE_URL + '/statistics/jobsByMonthlyViewsByJobType?employerId=' + GlobalVariable.BASE_EMPLOYER_ID
                                             + '&year=' + year).subscribe(response => {
                     var data:ChartData = {data:[], label:[]};  
                     var firstDesc:String = "";      
@@ -221,13 +224,12 @@ export class ReportService {
         });
     }
 
-    getJobsByMonthlyViewsByCategory(employerId: number, year: number) {
+    getJobsByMonthlyViewsByCategory(year: number) {
         this.chartDataset = {data:[], label:[]};
         //this.chartDataset = {data:[{data:[], label:[]}], label:[]};
         return new Promise<ChartDataset>(resolve => {
             setTimeout(() => { 
-                employerId = GlobalVariable.BASE_EMPLOYER_ID;
-                this.http.get(this.BASE_URL + '/statistics/jobsByMonthlyViewsByJobCategory?employerId=' + employerId
+                this.http.get(this.BASE_URL + '/statistics/jobsByMonthlyViewsByJobCategory?employerId=' + GlobalVariable.BASE_EMPLOYER_ID
                                             + '&year=' + year).subscribe(response => {
                     var data:ChartData = {data:[], label:[]};  
                     var firstDesc:String = "";      
@@ -257,6 +259,25 @@ export class ReportService {
         });
     }
 
+    getJobsByRating(jobId: number, year: number, month: number) {
+        this.chartData = {data:[], label:[]};
+        return new Promise<ChartData>(resolve => {
+            setTimeout(() => { 
+                this.http.get(this.BASE_URL + '/statistics/jobsByRating?employerId=' + GlobalVariable.BASE_EMPLOYER_ID
+                                            + '&jobId=' + jobId
+                                            + '&year=' + year
+                                            + '&month=' + (month?month:'')).subscribe(response => {
+                    response.json().forEach(node => {
+                        this.chartData.data.push((<JobsByRating>node).data);
+                        this.chartData.label.push((<JobsByRating>node).thumb);
+                    });
+                    resolve(this.chartData); 
+                }, error => {
+                    this.handleError("Unable to get data");
+                });
+            }, FETCH_LATENCY);
+        });
+    }
 
     private handleError(error) {
         console.error(error);

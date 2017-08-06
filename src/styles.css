@@ -18,7 +18,26 @@ body {
   position: absolute;
 }
 
+.shadow-2dp {
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+                  0 1px 5px 0 rgba(0, 0, 0, 0.12),
+                  0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+.shadow-3dp {
+      box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14),
+                  0 1px 8px 0 rgba(0, 0, 0, 0.12),
+                  0 3px 3px -2px rgba(0, 0, 0, 0.4);
+}
+
+.shadow-4dp {
+      box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+                  0 1px 10px 0 rgba(0, 0, 0, 0.12),
+                  0 2px 4px -1px rgba(0, 0, 0, 0.4);
+}
+
 #content {
+  width: 100%;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -34,6 +53,7 @@ body {
 }
 
 #content #scrollableContent .paddingContent {
+  background-color: transparent;
   overflow: hidden;
   height: 100%;
 }
@@ -143,6 +163,15 @@ h4 {
 }
 
 .list {
+  max-height: 520px;
+  overflow-y: auto;
+  border-left: solid 1px #EFEFEF;
+  border-right: solid 1px #EFEFEF;
+}
+
+.list-dashboard {
+  max-height: 300px;
+  overflow-y: auto;
   border-left: solid 1px #EFEFEF;
   border-right: solid 1px #EFEFEF;
 }
@@ -227,4 +256,18 @@ h4 {
 .donut-chart-placeholder {
   max-width: 480px;
   margin:auto;
+}
+
+.line-chart-placeholder {
+  max-width: 900px;
+  margin:auto;
+}
+
+.line-chart-placeholder1 {
+  max-width: 600px;
+  margin:auto;
+}
+
+.main-icon {
+  width: 40px;
 }

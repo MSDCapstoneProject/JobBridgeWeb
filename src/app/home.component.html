@@ -1,98 +1,164 @@
-<md-list>
-    <md-toolbar>
-        <span class="toolbar-spacer">
-            <h4>Dashboard</h4>
-            test test test
-        </span>
-    </md-toolbar>
-    <!--
-    <md-grid-list cols="4" rowHeight="2:1">
-        <md-grid-tile [colspan]="1" [rowspan]="1" [style.background]="FF5454">
-                1
-        </md-grid-tile>
-        <md-grid-tile [colspan]="1" [rowspan]="1" [style.background]="#68C3ED">
-2
-        </md-grid-tile>
-        <md-grid-tile [colspan]="1" [rowspan]="1" [style.background]="#FABB3E">
-     3
-        </md-grid-tile>
-        <md-grid-tile [colspan]="1" [rowspan]="1" [style.background]="#79C248">
-4
-        </md-grid-tile>
-        <md-grid-tile [colspan]="1" [rowspan]="2" [style.background]="white">
-5
-        </md-grid-tile>
-        <md-grid-tile [colspan]="2" [rowspan]="2" [style.background]="white">
-6
-        </md-grid-tile>
-        <md-grid-tile [colspan]="1" [rowspan]="2" [style.background]="white">
-7
-        </md-grid-tile>
-        <md-grid-tile [colspan]="2" [rowspan]="1" [style.background]="white">
-8
-        </md-grid-tile>
-        <md-grid-tile [colspan]="1" [rowspan]="1" [style.background]="white">
-9
-        </md-grid-tile>
-        <md-grid-tile [colspan]="1" [rowspan]="1" [style.background]="white">
-   10
-        </md-grid-tile>
-    </md-grid-list>
-    <div class="subtitle">
-        <p>Statistics are available for you</p>
-        <h3>
-            <span>Charts for your jobs and applicants</span>
-            <span>How people think about you</span>
-        </h3>
+<div style="padding: 0px 20px;">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Dashboard</h3>   
+        </div>
     </div>
-    <md-grid-list cols="3" rowHeight="5:3" class="sub-bottom">
-        <md-grid-tile class="sub-bottom-tile">
-            <img src="app/images/job.png" class="sub-bottom-icon">
-            <div class="sub-bottom-content">
-                <p>Jobs</p>
-                <h3>Locations</h3>
-                <h3>Types and categories</h3>
-                <h3>Views and filled positions</h3>
-                <button md-button routerLink="job">More <md-icon>input</md-icon></button>
+    <div class="row">
+        <div class="col-md-3 col-sm-12 col-xs-12">                       
+            <div class="panel panel-primary text-center no-boder bg-color-orange">
+                <div class="panel-body1">
+                    <i class="fa fa-bar-chart-o fa-5x"></i>
+                    <h3>
+                        <img src="app/images/ic_work_white_48dp_2x.png" class="main-icon">
+                        &nbsp;&nbsp;&nbsp;16
+                    </h3>
+                </div>
+                <div class="panel-footer back-footer">
+                    <span class="back-footer-text-orange">
+                        Jobs openning
+                    </span>
+                </div>
             </div>
-        </md-grid-tile>
-        <md-grid-tile class="sub-bottom-tile">
-            <img src="app/images/applicant.png" class="sub-bottom-icon">
-            <div class="sub-bottom-content">
-                <p>Jobseekers</p>
-                <h3>Jobseekers in the fields</h3>
-                <h3>Where they live</h3>
-                <h3>Gender</h3>
-                <button md-button routerLink="job">More <md-icon>input</md-icon></button>
+        </div>
+        <div class="col-md-3 col-sm-12 col-xs-12"> 
+            <div class="panel panel-primary text-center no-boder bg-color-red">
+                <div class="panel-body1">
+                    <i class="fa fa-edit fa-5x"></i>
+                    <h3>
+                        <img src="app/images/ic_remove_red_eye_white_48dp_2x.png" class="main-icon">
+                        &nbsp;&nbsp;&nbsp;429
+                    </h3>
+                </div>
+                <div class="panel-footer back-footer">
+                    <span class="back-footer-text-red">
+                        Jobs viewed
+                    </span>
+                </div>
+            </div>                         
+        </div>
+        <div class="col-md-3 col-sm-12 col-xs-12"> 
+            <div class="panel text-center no-boder bg-color-blue">
+                <div class="panel-body1">
+                    <i class="fa fa-edit fa-5x"></i>
+                    <h3>
+                        <img src="app/images/ic_people_outline_white_48dp_2x.png" class="main-icon">
+                        &nbsp;&nbsp;&nbsp;3
+                    </h3>
+                </div>
+                <div class="panel-footer back-footer">
+                    <span class="back-footer-text-blue">
+                        Subscriptions
+                    </span>
+                </div>
+            </div>                         
+        </div>
+        <div class="col-md-3 col-sm-12 col-xs-12">
+            <div class="panel back-dash">
+                    <i class="fa fa-dashboard fa-3x"></i> &nbsp; Statistics
+                    <p class="text-muted">
+                        Various types of graphs and statistics are available.
+                    </p>
+                    <button md-button routerLink="reports">More <md-icon>input</md-icon></button>
             </div>
-        </md-grid-tile>
-        <md-grid-tile class="sub-bottom-tile">
-            <img src="app/images/application.png" class="sub-bottom-icon">
-            <div class="sub-bottom-content">
-                <p>Applications</p>
-                <h3>Who applied</h3>
-                <h3>Age group</h3>
-                <h3>Where they live</h3>
-                <button md-button routerLink="job">More <md-icon>input</md-icon></button>
+        </div>
+    </div>     
+    <div class="row">
+        <div class="col-md-3 col-sm-12 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Thumbs Up & Down {{year}}
+                </div>
+                <div class="panel-body">
+                    <div class="donut-chart-placeholder">
+                        <canvas baseChart 
+                            [data]="chartData1"
+                            [labels]="chartLabel1"
+                            [chartType]="chartType1"></canvas>
+                    </div>
+                    <div *ngIf="!chart1 async">
+                        <h3>Chart is not available.</h3>
+                        <p>{{errorLog1}}</p>
+                    </div>
+                </div>
             </div>
-        </md-grid-tile>
-        <md-grid-tile class="sub-bottom-tile">
-            <img src="app/images/subscription.png" class="sub-bottom-icon">
-            <div class="sub-bottom-content">
-                <p>Subscriptions</p>
-                <h3>How many people subscribe</h3>
-                <h3>What people subscribe</h3>
-                <button md-button routerLink="job">More <md-icon>input</md-icon></button>
+        </div>
+        <div class="col-md-6 col-sm-12 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Monthly Job Views
+                </div>
+                <div class="panel-body">
+                    <div class="line-chart-placeholder1">
+                        <canvas baseChart 
+                            [datasets]="chartData2"
+                            [labels]="chartLabel2"
+                            [options]="lineChartOptions"
+                            [legend]="lineChartLegend"
+                            [chartType]="chartType2"></canvas>
+                    </div>
+                    <div *ngIf="!chart2 async">
+                        <h3>Chart is not available.</h3>
+                        <p>{{errorLog2}}</p>
+                    </div>
+                </div>
             </div>
-        </md-grid-tile>
-        <md-grid-tile class="sub-bottom-tile">
-            <img src="app/images/rating.png" class="sub-bottom-icon">
-            <div class="sub-bottom-content">
-                <p>Thumbs up</p>
-                <h3>How people think your job</h3>
-                <h3>Who applied</h3>
-                <button md-button routerLink="job">More <md-icon>input</md-icon></button>
+        </div>
+        <div class="col-md-3 col-sm-12 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Position filled
+                </div>
+                <div class="panel-body">
+                   <md-list class="list-dashboard">
+                        <md-list-item *ngFor="let job of jobService.jobs | async"
+                        class="listItem">
+                            <h4 md-line>
+                                {{job.title}}
+                                {{(job.filledPositions ? job.filledPositions : 0) / (job.totalPositions ? job.totalPositions : 0) * 100 | round}}%
+                            </h4>
+                        </md-list-item>
+                    </md-list>
+                </div>
             </div>
-        </md-grid-tile>
-    </md-grid-list>-->
-</md-list>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-sm-12 col-xs-12">     
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Recent Jobs
+                </div>
+                <div class="panel-body">
+                    <md-list class="list-dashboard">
+                        <md-list-item *ngFor="let job of jobService.jobs | async"
+                        [class.selected]="job === selectedJob"
+                        (click)="onJobSelect(job)"
+                        class="listItem">
+                            <h4 md-line>{{job.title}}</h4>
+                            <p md-line> {{job.city}} </p>
+                        </md-list-item>
+                    </md-list>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12 col-xs-12">     
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Recent Applicants
+                </div>
+                <div class="panel-body">
+                    <md-list class="list-dashboard">
+                        <md-list-item *ngFor="let jobSeeker of jobSeekerService.jobSeekers | async"
+                        [class.selected]="jobSeeker === selectedJobSeeker"
+                        (click)="onJobSeekerSelect(jobSeeker)"
+                        class="listItem">
+                            <h4 md-line>{{jobSeeker.firstName+' '+jobSeeker.lastName}} [{{jobSeeker.gender[0]}}]</h4>
+                            <p md-line> {{jobSeeker.city}}</p>
+                        </md-list-item>
+                    </md-list>
+                </div>
+            </div>
+        </div>
+    </div>       
+</div>

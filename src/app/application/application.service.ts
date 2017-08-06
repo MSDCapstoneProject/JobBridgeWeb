@@ -100,7 +100,7 @@ export class ApplicationService {
 
             var response = await this.http.post(this.BASE_URL + '/jobApplicants/update', body, options).toPromise();
             // response is not a object
-            this.getApplications(application.jobId);
+            //this.getApplications(application.jobId);
             this.getApplication(application.id);
             //this.ApplicationsStore.push(response.json());
             //this.ApplicationsSubject.next(this.ApplicationsStore);

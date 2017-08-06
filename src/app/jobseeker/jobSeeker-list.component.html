@@ -1,5 +1,5 @@
 <md-sidenav-container class="paddingContent">
-    <md-sidenav #sidenav class="sidenav" mode="side">
+    <md-sidenav #sidenav class="sidenav" mode="push">
         <h3>
             Filtering Options
             <md-icon class="filter-icon" (click)="sidenav.toggle()">check_circle</md-icon>
@@ -57,7 +57,7 @@
                         class="listItem">
                             <md-icon md-list-icon>account_box</md-icon>
                             <h4 md-line>{{jobSeeker.firstName+' '+jobSeeker.lastName}}</h4>
-                            <p md-line> {{jobSeeker.address}} </p>
+                            <p md-line> {{jobSeeker.city}} </p>
                         </md-list-item>
                     </md-list>
                 </div>

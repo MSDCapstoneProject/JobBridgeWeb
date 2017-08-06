@@ -30,8 +30,8 @@ export class JobDetailComponent implements OnChanges {
   startTime = { hour: '00', minute: '00' };
   endTime = { hour: '00', minute: '00' };
   statuses: KeyValuePair[] = [
-      { key: 0, value: 'Open' },
-      { key: 1, value: 'Closed' }
+      { key: 1, value: 'Open' },
+      { key: 0, value: 'Closed' }
   ];
 
   job: Job;

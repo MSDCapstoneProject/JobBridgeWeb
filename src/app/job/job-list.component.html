@@ -1,13 +1,13 @@
 <md-sidenav-container class="paddingContent">
-    <md-sidenav #sidenav class="sidenav" mode="side">
+    <md-sidenav #sidenav class="sidenav" mode="push">
         <h3>
             Filtering Options
             <md-icon class="filter-icon" (click)="sidenav.toggle()">check_circle</md-icon>
         </h3>
         <div class="filter-option">
-            <h4><md-icon class="filter-icon">label</md-icon>Location</h4>
+            <h4><md-icon class="filter-icon">label</md-icon>Street</h4>
             <md-input-container>
-                <input [(ngModel)]="filter[1].value" mdInput placeholder="Type location">
+                <input [(ngModel)]="filter[1].value" mdInput placeholder="Type street">
             </md-input-container>
         </div>
         <div class="filter-option">
@@ -51,7 +51,7 @@
                         class="listItem">
                             <md-icon md-list-icon>account_box</md-icon>
                             <h4 md-line>{{job.title}}</h4>
-                            <p md-line> {{job.jobLocation}} </p>
+                            <p md-line> {{job.city}} </p>
                         </md-list-item>
                     </md-list>
                 </div>

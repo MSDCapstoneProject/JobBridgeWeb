@@ -44,7 +44,7 @@ export class ReportChartComponent implements OnChanges {
             this.month = this.inputMonth?this.inputMonth:null;
             
             if(this.chart == 'City') {
-                this.reportService.getJobsByCity(this.jobId, this.year, this.month).then(results => {
+                this.reportService.getJobsByCity(this.year, this.month).then(results => {
                     setTimeout(() => { 
                         if((<ChartData>results).data != null && (<ChartData>results).data.length == 0){
                             this.chart = null;
@@ -59,7 +59,7 @@ export class ReportChartComponent implements OnChanges {
                     }, 500);
                 });
             } else if(this.chart == 'Jobtype') {
-                this.reportService.getJobsByType(this.jobId, this.year, this.month).then(results => {
+                this.reportService.getJobsByType(this.year, this.month).then(results => {
                     setTimeout(() => { 
                         if((<ChartData>results).data != null && (<ChartData>results).data.length == 0){
                             this.chart = null;
@@ -74,7 +74,7 @@ export class ReportChartComponent implements OnChanges {
                     }, 500);
                 });
             } else if(this.chart == 'Jobcategory') {
-                this.reportService.getJobsByCategory(this.jobId, this.year, this.month).then(results => {
+                this.reportService.getJobsByCategory(this.year, this.month).then(results => {
                     setTimeout(() => { 
                         if((<ChartData>results).data != null && (<ChartData>results).data.length == 0){
                             this.chart = null;
@@ -89,7 +89,7 @@ export class ReportChartComponent implements OnChanges {
                     }, 500);
                 });
             } else if(this.chart == 'Views') {
-                this.reportService.getJobsByMonthlyViews(this.jobId, this.year).then(results => {
+                this.reportService.getJobsByMonthlyViews(this.year).then(results => {
                     setTimeout(() => { 
                         if((<ChartDataset>results).data != null && (<ChartDataset>results).data.length == 0){
                             this.chart = null;
@@ -104,7 +104,7 @@ export class ReportChartComponent implements OnChanges {
                     }, 500);
                 });
             } else if(this.chart == 'Viewsbytype') {
-                this.reportService.getJobsByMonthlyViewsByType(this.jobId, this.year).then(results => {
+                this.reportService.getJobsByMonthlyViewsByType(this.year).then(results => {
                     setTimeout(() => { 
                         if((<ChartDataset>results).data != null && (<ChartDataset>results).data.length == 0){
                             this.chart = null;
@@ -119,7 +119,7 @@ export class ReportChartComponent implements OnChanges {
                     }, 500);
                 });
             } else if(this.chart == 'Viewsbycategory') {
-                this.reportService.getJobsByMonthlyViewsByCategory(this.jobId, this.year).then(results => {
+                this.reportService.getJobsByMonthlyViewsByCategory(this.year).then(results => {
                     setTimeout(() => { 
                         if((<ChartDataset>results).data != null && (<ChartDataset>results).data.length == 0){
                             this.chart = null;
@@ -130,6 +130,21 @@ export class ReportChartComponent implements OnChanges {
                             this.chartType = 'line';
                             this.isPieChartBound = false;
                             this.isLineChartBound = true;
+                        }
+                    }, 500);
+                });
+            } else if(this.chart == 'Rating') {
+                this.reportService.getJobsByRating(this.jobId, this.year, this.month).then(results => {
+                    setTimeout(() => { 
+                        if((<ChartData>results).data != null && (<ChartData>results).data.length == 0){
+                            this.chart = null;
+                            this.errorLog = 'No data found matching criteria.';
+                        } else {
+                            this.chartData = (<ChartData>results).data;
+                            this.chartLabel = (<ChartData>results).label;
+                            this.chartType = 'doughnut';
+                            this.isPieChartBound = true;
+                            this.isLineChartBound = false;
                         }
                     }, 500);
                 });

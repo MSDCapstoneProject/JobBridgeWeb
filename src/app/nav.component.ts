@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
             <!--<button md-button routerLink="/employers" >Employers</button>-->
             <button md-button routerLink="/jobs" >Jobs</button> 
             <button md-button routerLink="/applications" >Applications</button> 
-            <button md-button routerLink="/jobSeekers" >JobSeekers</button>
+            <button md-button routerLink="/jobSeekers" >Job Seekers</button>
             <button md-button routerLink="/reports" >Statistics</button> 
         </md-toolbar>
     `

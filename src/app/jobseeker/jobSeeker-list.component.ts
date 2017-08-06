@@ -15,18 +15,28 @@ export class JobSeekerListComponent implements OnInit {
     selectedJobSeeker: JobSeeker;
     showSearch = false;
     filter: Filter[];
-    statuses = [ 'all', 'student', 'citizen' ];
-    genders = [ 'all', 'male', 'female' ];
+    statuses = [ 'All', 'Student', 'Canadian Citizenship', 'Resident' ];
+    genders = [ 'All', 'Male', 'Female' ];
 
     async ngOnInit() {
         this.filter = [
             { type: FilterType.CONTAINS, key: "lastName", value: "" },
             { type: FilterType.CONTAINS, key: "street", value: "" },
             { type: FilterType.CONTAINS, key: "phone", value: "" },
-            { type: FilterType.MATCHES, key: "status", value: "all" },
-            { type: FilterType.MATCHES, key: "gender", value: "all" }
+            { type: FilterType.MATCHES, key: "status", value: "All" },
+            { type: FilterType.MATCHES, key: "gender", value: "All" }
         ];
         this.jobSeekerService.getJobSeekers();
+
+        this.route.queryParams.subscribe(params => {
+            if(params['jobseekerId'] != null) {
+                this.jobSeekerService.getJobSeeker(params['jobseekerId']);
+                this.jobSeekerService.jobSeeker.subscribe(
+                    jobSeeker => {
+                    this.selectedJobSeeker = <JobSeeker> jobSeeker[0];
+                    });
+            }
+        });
     }
 
     onSelect(jobSeeker: JobSeeker): void {

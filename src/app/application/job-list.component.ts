@@ -16,15 +16,15 @@ export class JobListComponent implements OnInit {
     filter: Filter[];
 
     statuses: KeyValuePair[] = [
-      { key: 0, value: 'Open' },
-      { key: 1, value: 'Closed' }
+      { key: 1, value: 'Open' },
+      { key: 0, value: 'Closed' }
     ];
  
     async ngOnInit() {
         this.filter = [
             { type: FilterType.CONTAINS, key: "title", value: "" },
             { type: FilterType.CONTAINS, key: "street", value: "" },
-            { type: FilterType.MATCHES, key: "status", value: "" },
+            { type: FilterType.MATCHES, key: "status", value: "1" },
             { type: FilterType.MATCHES, key: "jobCategoryId", value: "" },
             { type: FilterType.MATCHES, key: "jobTypeId", value: "" }
         ];

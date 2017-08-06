@@ -12,7 +12,7 @@ export class JobSeekerDetailComponent implements OnChanges {
 
   @Input() inputJobSeeker: JobSeeker;
   jobSeeker: JobSeeker;
-  statuses = [ 'Student', 'Resident' ];
+  statuses = [ 'Student', 'Canadian Citizenship', 'Resident' ];
   genders = [ 'Male', 'Female' ];
   selectDisabled = true;
 

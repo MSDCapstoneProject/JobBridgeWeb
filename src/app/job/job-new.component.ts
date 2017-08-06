@@ -33,8 +33,8 @@ export class JobNewComponent implements OnInit {
     startTime = { hour: '00', minute: '00' };
     endTime = { hour: '00', minute: '00' };
     statuses: KeyValuePair[] = [
-        { key: 0, value: 'Open' },
-        { key: 1, value: 'Closed' }
+        { key: 1, value: 'Open' },
+        { key: 0, value: 'Closed' }
     ];
     status: KeyValuePair = this.statuses[0];
 

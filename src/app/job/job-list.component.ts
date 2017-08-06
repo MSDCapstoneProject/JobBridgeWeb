@@ -26,6 +26,16 @@ export class JobListComponent implements OnInit {
         this.jobService.getJobs();
         this.jobService.getJobCategories();
         this.jobService.getJobTypes();
+
+        this.route.queryParams.subscribe(params => {
+            if(params['jobId'] != null) {
+                this.jobService.getJob(params['jobId']);
+                this.jobService.job.subscribe(
+                    job => {
+                    this.selectedJob = <Job> job[0];
+                    });
+            }
+        });
     }
 
     onSelect(job: Job): void {

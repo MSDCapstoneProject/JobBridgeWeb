@@ -1,13 +1,13 @@
 <md-sidenav-container class="paddingContent">
-    <md-sidenav #sidenav class="sidenav" mode="side">
+    <md-sidenav #sidenav class="sidenav" mode="push">
         <h3>
             Filtering Options
             <md-icon class="filter-icon" (click)="sidenav.toggle()">check_circle</md-icon>
         </h3>
         <div class="filter-option">
-            <h4><md-icon class="filter-icon">label</md-icon>Location</h4>
+            <h4><md-icon class="filter-icon">label</md-icon>Street</h4>
             <md-input-container>
-                <input [(ngModel)]="filter[1].value" mdInput placeholder="Type location">
+                <input [(ngModel)]="filter[1].value" mdInput placeholder="Type street">
             </md-input-container>
         </div>
         <div class="filter-option">
@@ -46,26 +46,28 @@
                 <div class="input-full-width input-single-row">
                     <div class="inline-title">Status</div>
                     <md-radio-group class="input-full-width" [(ngModel)]="filter[2].value">
-                        <md-radio-button class="radio-button" *ngFor="let status of statuses" [value]="status.key">
+                        <md-radio-button class="radio-button" *ngFor="let status of statuses" [value]="status.key.toString()">
                             {{status.value}}
                         </md-radio-button>
                     </md-radio-group>
                 </div>
             </div>
-            <md-toolbar color="indigo">Jobs</md-toolbar>
+            <md-toolbar color="indigo">Job Summaries</md-toolbar>
             <md-grid-list cols="3" rowHeight="4:3">
                 <md-grid-tile *ngFor="let job of jobService.jobs | async | jobPipe:filter">
                     <md-card class="md-card-item">
                         <md-card-header class="md-card-item-hearder">
-                            <md-card-title>{{job.title}}</md-card-title>
+                            <md-card-title clss="title">{{job.title}}</md-card-title>
                             <md-card-subtitle>{{job.street}} {{job.city}} {{job.province}}</md-card-subtitle>
                             <md-card-subtitle>{{job.country}} {{job.postalCode}}</md-card-subtitle>
                         </md-card-header>
                         <md-card-content>
                             <p>
+                                <md-icon class="filter-icon">visibility</md-icon>
                                 Viewed : {{job.views}}
                             </p>
                             <p>
+                                <md-icon class="filter-icon">hourglass_empty</md-icon>
                                 Applied : {{job.filledPositions ? job.filledPositions : 0}},
                                 Total : {{job.totalPositions ? job.totalPositions : 0}}
                             </p>

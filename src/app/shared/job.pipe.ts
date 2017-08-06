@@ -18,8 +18,7 @@ export class JobPipe implements PipeTransform {
         if(arg.type == FilterType.CONTAINS) {
           jobs = jobs.filter(job => job[arg.key].toLowerCase().indexOf(arg.value.toLowerCase()) !== -1);
         }
-        if(arg.type == FilterType.MATCHES && arg.value != '' && arg.value != 'all') {
-                console.log(arg.key + ':'+ arg.value);
+        if(arg.type == FilterType.MATCHES && arg.value != '' && arg.value != 'All') {
           jobs = jobs.filter(job => job[arg.key] == arg.value);
         }
       });

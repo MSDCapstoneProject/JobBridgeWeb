@@ -6,12 +6,13 @@ import { EmployerPipe }        from './employer.pipe';
 import { JobSeekerPipe }       from './jobSeeker.pipe';
 import { JobPipe }             from './job.pipe';
 import { DemoNumber }          from './demoNumber';
+import { RoundPipe }          from './round.pipe';
 import { ApplicationNameFilter } from './ApplicationNameFilter';
 import { JobStatsPipe } from './job.stats.pipe';
 
 @NgModule({
   imports:      [ CommonModule ],
-  declarations: [ EmployerPipe, JobSeekerPipe, JobPipe, DemoNumber, ApplicationNameFilter, JobStatsPipe ],
-  exports:      [ EmployerPipe, JobSeekerPipe, JobPipe, DemoNumber, ApplicationNameFilter, JobStatsPipe, CommonModule, FormsModule ]
+  declarations: [ EmployerPipe, JobSeekerPipe, JobPipe, DemoNumber, ApplicationNameFilter, JobStatsPipe, RoundPipe ],
+  exports:      [ EmployerPipe, JobSeekerPipe, JobPipe, DemoNumber, ApplicationNameFilter, JobStatsPipe, RoundPipe, CommonModule, FormsModule ]
 })
 export class SharedModule { }
