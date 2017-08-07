@@ -5,6 +5,7 @@ import { JobSeeker, JobSeekerService } from './jobseeker/jobSeeker.service';
 import { ChartData, ChartDataset, ReportService } from './report/report.service';
 import { JobPipe } from './shared/job.pipe';
 import { JobSeekerPipe } from './shared/jobSeeker.pipe';
+import { JobStatsPipe } from './shared/job.stats.pipe';
 import { Filter, FilterType } from './shared/commonObject';
 
 @Component({
@@ -65,23 +66,23 @@ export class HomeComponent implements OnInit {
               } else {
                   this.chartData1 = (<ChartData>results).data;
                   this.chartLabel1 = (<ChartData>results).label;
-              }
-          }, 500);
-      });
-      this.reportService.getJobsByMonthlyViews(this.year).then(results => {
-          setTimeout(() => { 
-              if((<ChartDataset>results).data != null && (<ChartDataset>results).data.length == 0){
-                  this.chart2 = null;
-                  this.errorLog2 = 'This chart is not available at this point.';
-              } else {
-                  this.chartData2 = (<ChartDataset>results).data;
-                  this.chartLabel2 = (<ChartDataset>results).label;
-                  console.log(this.chartData2);
-              }
-          }, 500);
-      });
-  }
 
+                  this.reportService.getJobsByMonthlyViews(this.year).then(results => {
+                      setTimeout(() => { 
+                          if((<ChartDataset>results).data != null && (<ChartDataset>results).data.length == 0){
+                              this.chart2 = null;
+                              this.errorLog2 = 'This chart is not available at this point.';
+                          } else {
+                              this.chartData2 = (<ChartDataset>results).data;
+                              this.chartLabel2 = (<ChartDataset>results).label;
+                          }
+                      }, 500);
+                  });
+              }
+          }, 500);
+      });
+
+  }
   
   onJobSelect(job: Job): void {
     this.router.navigate(['jobs'], { queryParams: { jobId: job.id }});

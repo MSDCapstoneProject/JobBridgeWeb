@@ -1,6 +1,6 @@
 import { Injectable, Pipe, PipeTransform } from '@angular/core';
-import { Statistic, StatisticType } from './commonObject';
-import { JobsByCity } from '../report/report.service';
+import { Job, JobList } from '../job/job.service';
+import { DatePipe } from '@angular/common';
 
 @Pipe({
   name: 'jobStatsPipe',
@@ -8,28 +8,32 @@ import { JobsByCity } from '../report/report.service';
 })
 @Injectable()
 export class JobStatsPipe implements PipeTransform {
-  data = [];
-  temp:number[] = [350, 450];;
-  transform(source: any[], statisticType: StatisticType, target: number): any {
-    if (source == null || statisticType == null) {
-      return this.temp;
+
+  constructor(private datePipe: DatePipe) {}
+  count:number;
+  date:string;
+
+  transform(jobs: JobList[], type: number): any {
+    this.count = 0;
+    this.date = this.datePipe.transform(new Date(), 'yyyyMMdd');
+    //console.log(this.date);
+    if (jobs == null || type == null) {
+      return 0;
     } else {
-        console.log('Pipe start');
-        console.log(source);
-        console.log(statisticType);
-        console.log(StatisticType.JOBS_BY_CITY);
-        console.log(target);
-        /*
-        if (statisticType == StatisticType.JOBS_BY_CITY) {
-            source.forEach(node => {
-              this.data.push(node);
-            });
-            //console.log(this.data);
-        }*/
-      console.log(this.temp);
-      console.log('Pipe end');
-      //return this.data;
-      return this.temp;
+      if (type === 0) {
+        var expiryDate:String;
+        jobs.forEach(job => {
+          expiryDate = job.expiryDate;
+          if (this.date <= expiryDate.replace('-','').replace('-','')) {
+            this.count ++;
+          }
+        });
+      } else if (type === 1){
+        jobs.forEach(job => {
+          this.count = this.count + job.views;
+        });
+      }
+      return this.count;
     }
   }
 }

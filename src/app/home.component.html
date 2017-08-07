@@ -11,7 +11,7 @@
                     <i class="fa fa-bar-chart-o fa-5x"></i>
                     <h3>
                         <img src="app/images/ic_work_white_48dp_2x.png" class="main-icon">
-                        &nbsp;&nbsp;&nbsp;16
+                        &nbsp;&nbsp;&nbsp;{{jobService.jobs | async | jobStatsPipe:0}}
                     </h3>
                 </div>
                 <div class="panel-footer back-footer">
@@ -27,7 +27,7 @@
                     <i class="fa fa-edit fa-5x"></i>
                     <h3>
                         <img src="app/images/ic_remove_red_eye_white_48dp_2x.png" class="main-icon">
-                        &nbsp;&nbsp;&nbsp;429
+                        &nbsp;&nbsp;&nbsp;{{jobService.jobs | async | jobStatsPipe:1}}
                     </h3>
                 </div>
                 <div class="panel-footer back-footer">
