@@ -28,6 +28,7 @@
       '@angular/animations': 'node_modules/@angular/animations/bundles/animations.umd.min.js',
       '@angular/animations/browser':'node_modules/@angular/animations/bundles/animations-browser.umd.js',
       '@angular/platform-browser/animations': 'node_modules/@angular/platform-browser/bundles/platform-browser-animations.umd.js',
+      '@angular/cdk': 'npm:@angular/cdk/bundles/cdk.umd.js',
 
       // other libraries
       'rxjs':                      'npm:rxjs',
